@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gwt.iml" filepath="$PROJECT_DIR$/gwt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sampleapp/sampleapp.iml" filepath="$PROJECT_DIR$/sampleapp/sampleapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samplemvp/samplemvp.iml" filepath="$PROJECT_DIR$/samplemvp/samplemvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uibind/uibind.iml" filepath="$PROJECT_DIR$/uibind/uibind.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,31 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <ui:style>
+    .centerFormStyle {
+      position: relative;
+      width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #b5dcff;
+    }
+    .loginButtonStyle{
+      position: relative;
+      margin-left: 55px;
+    }
+    .goToRegistrationButtonStyle{
+      position: relative;
+      margin-left: 23px;
+      margin-top: 50px;
+    }
+  </ui:style>
+
+  <g:HTMLPanel styleName="{style.centerFormStyle}">
+    <g:Label>username:</g:Label>
+    <g:TextBox ui:field="usernameLoginTextBox"/>
+    <g:Label>password:</g:Label>
+    <g:PasswordTextBox ui:field="passwordRegisterTextBox"/>
+    <g:Button styleName="{style.loginButtonStyle}" ui:field="loginButton">Login</g:Button>
+    <g:Button styleName="{style.goToRegistrationButtonStyle}" ui:field="goToRegistrationButton">go to registration</g:Button>
+  </g:HTMLPanel>
+
+</ui:UiBinder>

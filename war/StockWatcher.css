@@ -1,0 +1,56 @@
+/** Add css rules here for your application. */
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+
+body, td, a, div, .p {
+    padding: 10px;
+}
+
+.watchListHeader{
+    background-color: #2062b8;
+    color: white;
+    font-style: italic;
+}
+
+.watchList{
+    border: 1px solid #87ceeb;
+    padding: 2px;
+    margin-bottom: 6px;
+}
+
+.watchListNumericColumn{
+    text-align: right;
+    width: 8em;
+}
+
+.watchListRemoveColumn{
+    text-align: center;
+}
+
+.addPanel{
+    margin: 10px 0px 15px 0px;
+}
+
+.gwt-Button-remove {
+    width: 50px;
+}
+
+.noChange {
+    color: #00d3ff;
+}
+
+.positiveChange {
+    color: #00ff1a;
+}
+
+.negativeChange {
+    color: #ff0000;
+}
+
+.errorMessage {
+    color: red;
+}

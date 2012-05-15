@@ -1,0 +1,14 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:c="urn:import:com.uibindingexample.client">
+  
+  <ui:style>
+    .bolder { font-weight: bold;}
+  </ui:style>
+  
+  <g:HTMLPanel>
+    <g:Label styleName="{style.bolder}" text="This is my label in bold!"/>
+    <g:VerticalPanel ui:field="myPanelContent" spacing="5"/>
+    <c:FavoriteColorWidget/>
+  </g:HTMLPanel>
+</ui:UiBinder>
