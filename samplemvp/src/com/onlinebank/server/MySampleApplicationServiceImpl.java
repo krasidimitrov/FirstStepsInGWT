@@ -1,7 +1,7 @@
-package com.mySampleApplication.server;
+package com.onlinebank.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.mySampleApplication.client.MySampleApplicationService;
+import com.onlinebank.client.MySampleApplicationService;
 
 public class MySampleApplicationServiceImpl extends RemoteServiceServlet implements MySampleApplicationService {
   // Implementation of sample interface method

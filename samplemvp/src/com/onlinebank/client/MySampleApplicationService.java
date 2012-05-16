@@ -1,4 +1,4 @@
-package com.mySampleApplication.client;
+package com.onlinebank.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;

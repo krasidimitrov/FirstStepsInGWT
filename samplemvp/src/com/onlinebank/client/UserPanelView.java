@@ -1,4 +1,4 @@
-package com.mySampleApplication.client;
+package com.onlinebank.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -8,13 +8,14 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class RegisterFormView extends Composite {
-  interface RegisterFormViewUiBinder extends UiBinder<HTMLPanel, RegisterFormView> {
+public class UserPanelView extends Composite{
+  interface UserPanelViewUiBinder extends UiBinder<HTMLPanel, UserPanelView> {
   }
 
-  private static RegisterFormViewUiBinder ourUiBinder = GWT.create(RegisterFormViewUiBinder.class);
+  private static UserPanelViewUiBinder ourUiBinder = GWT.create(UserPanelViewUiBinder.class);
 
-  public RegisterFormView() {
+  public UserPanelView() {
     initWidget(ourUiBinder.createAndBindUi(this));
+
   }
 }
