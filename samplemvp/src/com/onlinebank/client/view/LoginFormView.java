@@ -37,10 +37,10 @@ public class LoginFormView extends Composite implements View {
     goToRegistrationButton.addClickHandler(new ClickHandler() {
       @Override
       public void onClick(ClickEvent event) {
-//        RegisterFormView registerFormView = new RegisterFormView();
+//        RegisterViewImpl registerFormView = new RegisterViewImpl();
 //        RootPanel.get().remove(0);
 //        RootPanel.get().add(registerFormView);
-        MySampleApplication.setView(new RegisterFormView());
+        MySampleApplication.setView(new RegisterViewImpl());
       }
     });
   }

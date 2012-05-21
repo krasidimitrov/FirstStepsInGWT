@@ -2,3 +2,7 @@
 -read: http://www.javabeat.net/2011/11/what-is-model-view-presenter-mvp-in-gwt-application/
 
 -question: What is the correct way to change views(since static method is no go and you said Adio not to use the go method)?
+
+
+21.05.2012
+-reading https://developers.google.com/web-toolkit/articles/mvp-architecture-2 and exploring the code. started doing the bank task

@@ -23,7 +23,7 @@ public class MySampleApplication implements EntryPoint {
 
   public void onModuleLoad() {
      View view = new LoginFormView();
-//    RegisterFormView view = new RegisterFormView();
+//    RegisterViewImpl view = new RegisterViewImpl();
 //    ?UserPanelView view = new UserPanelView();
     RootPanel.get().add(view);
   }
