@@ -10,6 +10,6 @@
 
 
   <!-- Specify the app servlets.                   -->
-  <servlet path='/MySampleApplicationService' class='com.onlinebank.server.MySampleApplicationServiceImpl'/>
+  <servlet path='/onlinebank' class='com.onlinebank.server.MySampleApplicationServiceImpl'/>
 
 </module>

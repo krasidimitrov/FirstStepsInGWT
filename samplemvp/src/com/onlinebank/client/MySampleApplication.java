@@ -2,6 +2,8 @@ package com.onlinebank.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.onlinebank.client.view.LoginFormView;
+import com.onlinebank.client.view.View;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>
