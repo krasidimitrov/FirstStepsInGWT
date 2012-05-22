@@ -5,11 +5,11 @@ import com.google.gwt.user.client.ui.Widget;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public interface RegisterView  {
+public interface LoginView {
 
   public interface Presenter {
-    void onRegisterButtonClicked();
-    void onGoToLoginButtonClicked();
+    void onLoginButtonClicked();
+    void onGotToRegisterButtonClicked();
   }
 
   void setPresenter(Presenter presenter);

@@ -5,18 +5,18 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("OnlineBankService")
-public interface MySampleApplicationService extends RemoteService {
+public interface BankService extends RemoteService {
   // Sample interface method of remote interface
   String getMessage(String msg);
 
   /**
    * Utility/Convenience class.
-   * Use MySampleApplicationService.App.getInstance() to access static instance of MySampleApplicationServiceAsync
+   * Use BankService.App.getInstance() to access static instance of MySampleApplicationServiceAsync
    */
   public static class App {
-    private static MySampleApplicationServiceAsync ourInstance = GWT.create(MySampleApplicationService.class);
+    private static BankServiceAsync ourInstance = GWT.create(BankService.class);
 
-    public static synchronized MySampleApplicationServiceAsync getInstance() {
+    public static synchronized BankServiceAsync getInstance() {
       return ourInstance;
     }
   }

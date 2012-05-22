@@ -41,7 +41,7 @@ public class RegisterViewImpl extends Composite implements RegisterView {
   @UiHandler("goToLoginButton")
   void onGoToLoginButtonClicked(ClickEvent event){
     if(presenter != null){
-      presenter.onRegisterButtonClicked();
+      presenter.onGoToLoginButtonClicked();
     }
   }
 }

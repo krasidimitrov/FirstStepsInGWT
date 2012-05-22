@@ -7,15 +7,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d0eb91d-1953-4af4-80a4-a2343211cdc9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterFormView.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterFormView.ui.xml" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.ui.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/GoToLoginButtonClickedEvent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/GoToLoginButtonClickedEventHandler.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginViewImpl.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/MySampleApplication.gwt.xml" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/Bank.gwt.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplication.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/Bank.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplicationService.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/BankService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplicationServiceAsync.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/BankServiceAsync.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.ui.xml" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginView.ui.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/server/MySampleApplicationServiceImpl.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/server/BankServiceImpl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/war/MySampleApplication.css" afterPath="$PROJECT_DIR$/samplemvp/war/Bank.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/samplemvp/war/MySampleApplication.html" afterPath="$PROJECT_DIR$/samplemvp/war/Bank.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/STATUS" afterPath="$PROJECT_DIR$/STATUS" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplication.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/Presenter.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/Presenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sampleapp/src/com/onlinebank/MySampleApplication.gwt.xml" afterPath="$PROJECT_DIR$/sampleapp/src/com/onlinebank/MySampleApplication.gwt.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sampleapp/war/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/sampleapp/war/WEB-INF/web.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/AppController.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/AppController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java" afterPath="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/samplemvp/war/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/samplemvp/war/WEB-INF/web.xml" />
     </list>
     <ignored path="gwt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,61 +94,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/AppController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="13" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/View.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="17" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginFormView.ui.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.ui.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding>
-                <marker date="1336983369000" expanded="true" signature="154:291" placeholder="{...}" />
-                <marker date="1336983369000" expanded="true" signature="313:371" placeholder="{...}" />
-                <marker date="1336983369000" expanded="true" signature="404:486" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegisterViewImpl.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RegisterViewImpl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="42" selection-start="1288" selection-end="1288" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserPanelView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/UserPanelView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegisterView.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="17" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
+            <state line="42" column="0" selection-start="1219" selection-end="1219" vertical-scroll-proportion="1.3212435">
               <folding />
             </state>
           </provider>
@@ -145,28 +106,10 @@
       <file leaf-file-name="RegisterPresenter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="5" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0">
+            <state line="32" column="0" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="STATUS" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/STATUS">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="130" selection-start="372" selection-end="372" vertical-scroll-proportion="0.123674914">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Presenter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/Presenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="15" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -186,22 +129,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/View.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/LoginFormView.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/RegisterFormView.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/UserPanelView.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplicationService.java" />
-        <option value="$PROJECT_DIR$/samplemvp/war/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/samplemvp/war/MySampleApplication.html" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/MySampleApplication/MySampleApplication.gwt.xml" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/MySampleApplication.gwt.xml" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplication.java" />
         <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/TestView.java" />
         <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/Presenter.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java" />
-        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java" />
         <option value="$PROJECT_DIR$/STATUS" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.java" />
+        <option value="$PROJECT_DIR$/samplemvp/war/Bank.html" />
+        <option value="$PROJECT_DIR$/samplemvp/war/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginView.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginViewImpl.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/ReturnToLoginButtonClickedEvent.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/GoToLoginButtonClickedEventHandler.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/GoToLoginButtonClickedEvent.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/Bank.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/AppController.java" />
+        <option value="$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java" />
       </list>
     </option>
   </component>
@@ -209,10 +152,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
     <option name="y" value="24" />
-    <option name="width" value="1926" />
-    <option name="height" value="1032" />
+    <option name="width" value="1936" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -240,7 +182,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -270,6 +211,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="samplemvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samplemvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samplemvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="war" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,9 +388,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="samplemvp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="onlinebank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -428,9 +440,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -496,6 +508,24 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -529,17 +559,19 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -570,46 +602,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GWT.ConfigurationType" factoryName="GWT Configuration">
-      <module name="" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -633,6 +625,26 @@
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
         <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+      <module name="" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -676,7 +688,8 @@
     </configuration>
     <configuration default="false" name="onlinebank" type="GWT.ConfigurationType" factoryName="GWT Configuration">
       <module name="samplemvp" />
-      <option name="RUN_PAGE" value="MySampleApplication.html" />
+      <option name="RUN_PAGE" value="Bank.html" />
+      <option name="GWT_MODULE" value="com.onlinebank.Bank" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
         <option name="TRANSPORT" value="0" />
@@ -875,15 +888,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="24" width="1926" height="1032" extended-state="4" />
+    <frame x="0" y="24" width="1936" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.605889" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295325" sideWeight="0.49786323" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842582" sideWeight="0.49786323" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39680728" sideWeight="0.56891024" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6296716" sideWeight="0.56891024" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39411098" sideWeight="0.46634614" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -895,13 +908,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.605889" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39903846" sideWeight="0.605889" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.605889" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.49786323" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18045112" sideWeight="0.9977195" order="0" side_tool="false" content_ui="tabs" x="1493" y="212" width="408" height="753" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5337143" sideWeight="0.52991456" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32959402" sideWeight="0.46659118" order="0" side_tool="false" content_ui="tabs" x="1493" y="212" width="408" height="753" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5334088" sideWeight="0.52991456" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959402" sideWeight="0.605889" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295583" sideWeight="0.49786323" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -962,137 +975,126 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gwt.iml">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/UserPanelView.ui.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1337164227000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1337164227000" expanded="true" signature="-1:-1" placeholder="/*...*/" />
+            <marker date="1337164227000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1337164227000" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1337164227000" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samplemvp/war/Bank.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="36" selection-start="524" selection-end="543" vertical-scroll-proportion="-8.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samplemvp/war/Bank.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/war/MySampleApplication.html">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/Bank.gwt.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="36" selection-start="539" selection-end="558" vertical-scroll-proportion="-8.75">
+        <state line="2" column="24" selection-start="199" selection-end="218" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/MySampleApplication.gwt.xml">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginViewImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="38" selection-start="218" selection-end="218" vertical-scroll-proportion="0.06147541">
+        <state line="13" column="65" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/war/WEB-INF/web.xml">
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
-        <state />
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/GoToLoginButtonClickedEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="307" selection-start="656" selection-end="656" vertical-scroll-proportion="0.25586355">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/MySampleApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="42" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="17" selection-start="242" selection-end="242" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1336983369000" expanded="true" signature="154:291" placeholder="{...}" />
-            <marker date="1336983369000" expanded="true" signature="313:371" placeholder="{...}" />
-            <marker date="1336983369000" expanded="true" signature="404:486" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0">
+        <state line="7" column="17" selection-start="195" selection-end="195" vertical-scroll-proportion="0.12559809">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/Presenter.java">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="15" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+        <state line="13" column="31" selection-start="312" selection-end="312" vertical-scroll-proportion="0.23325358">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.ui.xml">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginView.ui.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="14" selection-start="197" selection-end="197" vertical-scroll-proportion="0.10575793">
-          <folding>
-            <marker date="1337164274000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1337164274000" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1337164274000" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/LoginFormView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="620" selection-end="620" vertical-scroll-proportion="0.12338425">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/UserPanelView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.0">
+        <state line="11" column="13" selection-start="374" selection-end="374" vertical-scroll-proportion="0.12252042">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="17" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
+        <state line="7" column="17" selection-start="190" selection-end="190" vertical-scroll-proportion="0.12252042">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/event/GoToLoginButtonClickedEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="42" selection-start="1288" selection-end="1288" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="18" column="36" selection-start="585" selection-end="609" vertical-scroll-proportion="0.3150525">
+          <folding>
+            <element signature="e#342#378#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="5" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0">
+        <state line="60" column="17" selection-start="1918" selection-end="1918" vertical-scroll-proportion="0.6499417">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/STATUS">
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/Bank.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="130" selection-start="372" selection-end="372" vertical-scroll-proportion="0.123674914">
+        <state line="16" column="13" selection-start="492" selection-end="492" vertical-scroll-proportion="0.28004667">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterView.ui.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="80" selection-start="899" selection-end="914" vertical-scroll-proportion="0.54259044">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/presenter/RegisterPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="1026" selection-end="1026" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/samplemvp/src/com/onlinebank/client/view/RegisterViewImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="0" selection-start="1219" selection-end="1219" vertical-scroll-proportion="1.3212435">
           <folding />
         </state>
       </provider>

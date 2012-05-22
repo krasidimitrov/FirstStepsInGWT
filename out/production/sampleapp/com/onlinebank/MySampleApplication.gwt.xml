@@ -6,10 +6,10 @@
   <inherits name='com.google.gwt.user.User'/>
 
   <!-- Specify the app entry point class.                   -->
-  <entry-point class='com.onlinebank.client.MySampleApplication'/>
+  <entry-point class='com.onlinebank.client.Bank'/>
 
 
   <!-- Specify the app servlets.                   -->
-  <servlet path='/onlinebank' class='com.onlinebank.server.MySampleApplicationServiceImpl'/>
+  <servlet path='/MySampleApplicationService' class='com.onlinebank.server.BankServiceImpl'/>
 
 </module>
