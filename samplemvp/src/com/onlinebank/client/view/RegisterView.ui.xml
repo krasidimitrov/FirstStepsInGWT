@@ -25,9 +25,9 @@
 
   <g:HTMLPanel styleName="{style.centerFormStyle}">
     <g:Label>username:</g:Label>
-    <g:TextBox ui:field="usernameRegisterTextBox"/>
+    <g:TextBox ui:field="usernameTextBox"/>
     <g:Label>password:</g:Label>
-    <g:PasswordTextBox ui:field="passwordRegisterTextBox"/>
+    <g:PasswordTextBox ui:field="passwordTextBox"/>
     <g:Button styleName="{style.registerButtonStyle}" ui:field="registerButton">Register</g:Button>
     <g:Button styleName="{style.goToLoginButtonStyle}" ui:field="goToLoginButton">go to login</g:Button>
   </g:HTMLPanel>

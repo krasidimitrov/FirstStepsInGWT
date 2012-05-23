@@ -2,11 +2,14 @@ package com.onlinebank.client;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.onlinebank.client.event.GoToLoginButtonClickedEvent;
 import com.onlinebank.client.event.GoToLoginButtonClickedEventHandler;
+import com.onlinebank.client.event.GoToRegistrationButtonClickedEvent;
+import com.onlinebank.client.event.GoToRegistrationButtonClickedEventHandler;
+import com.onlinebank.client.presenter.LoginPresenter;
 import com.onlinebank.client.presenter.Presenter;
 import com.onlinebank.client.presenter.RegisterPresenter;
 import com.onlinebank.client.view.LoginViewImpl;
@@ -15,28 +18,35 @@ import com.onlinebank.client.view.RegisterViewImpl;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class AppController implements Presenter, ValueChangeHandler<String>{
+public class AppController implements Presenter, ValueChangeHandler<String> {
 
-  private final HandlerManager eventBus;
+  private final EventBus eventBus;
   private final BankServiceAsync rpcService;
   private HasWidgets container;
   private RegisterViewImpl registerView = null;
   private LoginViewImpl loginView = null;
 
-  public AppController(BankServiceAsync rpcService, HandlerManager eventBus){
+  public AppController(BankServiceAsync rpcService, EventBus eventBus) {
 
     this.rpcService = rpcService;
     this.eventBus = eventBus;
     bind();
   }
 
-  private void bind(){
+  private void bind() {
     History.addValueChangeHandler(this);
 
-    eventBus.addHandler(GoToLoginButtonClickedEvent.TYPE , new GoToLoginButtonClickedEventHandler() {
+    eventBus.addHandler(GoToLoginButtonClickedEvent.TYPE, new GoToLoginButtonClickedEventHandler() {
       @Override
       public void onGoToLoginButtonClicked(GoToLoginButtonClickedEvent event) {
         History.newItem("login");
+      }
+    });
+
+    eventBus.addHandler(GoToRegistrationButtonClickedEvent.TYPE, new GoToRegistrationButtonClickedEventHandler() {
+      @Override
+      public void onGoToRegistrationButtonClicked(GoToRegistrationButtonClickedEvent event) {
+        History.newItem("register");
       }
     });
   }
@@ -47,8 +57,7 @@ public class AppController implements Presenter, ValueChangeHandler<String>{
 
     if ("".equals(History.getToken())) {
       History.newItem("register");
-    }
-    else {
+    } else {
       History.fireCurrentHistoryState();
     }
   }
@@ -58,16 +67,23 @@ public class AppController implements Presenter, ValueChangeHandler<String>{
     String token = stringValueChangeEvent.getValue();
 
     if (token != null) {
-      if(token.equals("register")) {
+      if (token.equals("register")) {
 
         if (registerView == null) {
           registerView = new RegisterViewImpl();
         }
 
-        new RegisterPresenter(eventBus, registerView).go(container);
+        new RegisterPresenter(rpcService, eventBus, registerView).go(container);
+      }
+      if (token.equals("login")) {
+
+        if (loginView == null) {
+          loginView = new LoginViewImpl();
+        }
+
+        new LoginPresenter(rpcService, eventBus, loginView).go(container);
       }
     }
-
 
 
   }

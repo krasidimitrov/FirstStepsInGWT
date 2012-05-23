@@ -1,11 +1,13 @@
 package com.onlinebank.client.view;
 
-import com.google.gwt.user.client.ui.Widget;
+import com.onlinebank.client.model.User;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
 public interface RegisterView  {
+
+  User getUser();
 
   public interface Presenter {
     void onRegisterButtonClicked();
@@ -13,5 +15,4 @@ public interface RegisterView  {
   }
 
   void setPresenter(Presenter presenter);
-  Widget asWidget();
 }

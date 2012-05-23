@@ -9,7 +9,7 @@ public interface LoginView {
 
   public interface Presenter {
     void onLoginButtonClicked();
-    void onGotToRegisterButtonClicked();
+    void onGotToRegistrationButtonClicked();
   }
 
   void setPresenter(Presenter presenter);

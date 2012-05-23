@@ -1,23 +1,10 @@
 package com.onlinebank.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.onlinebank.client.model.User;
 
 @RemoteServiceRelativePath("OnlineBankService")
 public interface BankService extends RemoteService {
-  // Sample interface method of remote interface
-  String getMessage(String msg);
-
-  /**
-   * Utility/Convenience class.
-   * Use BankService.App.getInstance() to access static instance of MySampleApplicationServiceAsync
-   */
-  public static class App {
-    private static BankServiceAsync ourInstance = GWT.create(BankService.class);
-
-    public static synchronized BankServiceAsync getInstance() {
-      return ourInstance;
-    }
-  }
+  void register(User user);
 }

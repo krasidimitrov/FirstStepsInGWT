@@ -1,8 +1,10 @@
 package com.onlinebank.client.view;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
@@ -30,5 +32,12 @@ public class LoginViewImpl extends Composite implements LoginView {
 
   public LoginViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
+  }
+
+  @UiHandler("goToRegistrationButton")
+  void onGoToRegistrationButtonClicked(ClickEvent event ){
+    if(presenter != null){
+      presenter.onGotToRegistrationButtonClicked();
+    }
   }
 }

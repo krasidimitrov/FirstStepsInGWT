@@ -9,6 +9,7 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.onlinebank.client.model.User;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
@@ -29,6 +30,10 @@ public class RegisterViewImpl extends Composite implements RegisterView {
   Button goToLoginButton;
   @UiField
   Button registerButton;
+//  @UiField
+//  TextBox usernameTextBox;
+//  @UiField
+//  PasswordTextBox passwordTextBox;
 
   public RegisterViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -38,10 +43,21 @@ public class RegisterViewImpl extends Composite implements RegisterView {
     this.presenter = presenter;
   }
 
+  public User getUser(){
+    return null;
+  }
+
   @UiHandler("goToLoginButton")
   void onGoToLoginButtonClicked(ClickEvent event){
     if(presenter != null){
       presenter.onGoToLoginButtonClicked();
+    }
+  }
+
+  @UiHandler("registerButton")
+  void onRegisterButtonClicked(ClickEvent event){
+    if(presenter != null){
+      presenter.onRegisterButtonClicked();
     }
   }
 }
