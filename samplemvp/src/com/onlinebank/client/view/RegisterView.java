@@ -8,6 +8,10 @@ import com.onlinebank.client.model.User;
 public interface RegisterView  {
 
   User getUser();
+  public void setStatusMessage(String text);
+
+
+  void redirectToMainPage();
 
   public interface Presenter {
     void onRegisterButtonClicked();
