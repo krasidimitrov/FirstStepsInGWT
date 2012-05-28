@@ -40,4 +40,6 @@ public class LoginViewImpl extends Composite implements LoginView {
       presenter.onGotToRegistrationButtonClicked();
     }
   }
+
+
 }
