@@ -1,11 +1,11 @@
 package com.onlinebank.client.presenter;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
 import com.onlinebank.client.BankServiceAsync;
+import com.onlinebank.client.event.GoToLoginButtonClickedEvent;
 import com.onlinebank.client.exception.IncorrectDataFormatException;
 import com.onlinebank.client.exception.UsernameAlreadyExistsException;
 import com.onlinebank.client.model.User;
@@ -41,19 +41,23 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
 
   @Override
   public void onGoToLoginButtonClicked() {
-    //eventBus.fireEvent(new GoToLoginButtonClickedEvent());
+    eventBus.fireEvent(new GoToLoginButtonClickedEvent());
     registerView.setStatusMessage("");
-    History.newItem("login");
   }
 
   public void registerUser() {
     User user = registerView.getUser();
+    if(!user.getUsername().matches("^[A-Za-z0-9]{5,20}$") || !user.getPassword().matches("^[A-Za-z0-9]{5,20}$"))
+    {
+      registerView.setStatusMessage("Username and password must be 5 to 20 symbols long letters and numbers only.");
+      return;
+    }
 
     rpcService.register(user, new AsyncCallback<Void>() {
       @Override
       public void onFailure(Throwable caught) {
         if(caught instanceof IncorrectDataFormatException){
-        registerView.setStatusMessage("Username and password must be longer than 6 symbols");}
+        registerView.setStatusMessage("Username and password must be 5 to 20 symbols long");}
         else if (caught instanceof UsernameAlreadyExistsException){
           registerView.setStatusMessage("Username already exists. Try another one.");
         }
@@ -62,8 +66,8 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
       @Override
       public void onSuccess(Void result) {
         registerView.setStatusMessage("Registration Successful!");
-//        registerView.redirectToMainPage();
       }
+
     });
   }
 
