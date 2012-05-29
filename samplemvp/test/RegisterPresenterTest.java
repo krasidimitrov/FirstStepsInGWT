@@ -22,8 +22,8 @@ import static org.hamcrest.core.IsSame.sameInstance;
 import static org.junit.Assert.assertThat;
 
 /**
-* @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
-*/
+ * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
+ */
 
 @RunWith(JMock.class)
 public class RegisterPresenterTest {
@@ -37,7 +37,7 @@ public class RegisterPresenterTest {
 
   private RegisterPresenter registerPresenter;
   private SimpleEventBus simpleEventBus = new SimpleEventBus();
-  
+
 //  @Test
 //  public void userIsRedirectedToMainPageWhenLoginSuccess() throws Exception {
 //
@@ -105,10 +105,10 @@ public class RegisterPresenterTest {
     asyncCallbackInstanceMatcher.getInstance().onSuccess(null);
     assertThat(userInstanceMatcher.getInstance(), is(sameInstance(user)));
   }
-  
+
   @Test
-  public void messageForIncorrectDataIsSetOnFailureWithIncorrectDataFormatException(){
-    context.checking(new Expectations(){{
+  public void messageForIncorrectDataIsSetOnFailureWithIncorrectDataFormatException() {
+    context.checking(new Expectations() {{
       oneOf(registerView).getUser();
       will(returnValue(user));
       oneOf(bankServiceAsync).register(with(userInstanceMatcher), with(asyncCallbackInstanceMatcher));
@@ -120,8 +120,8 @@ public class RegisterPresenterTest {
   }
 
   @Test
-  public void messageForExistingUsernameIsSetOnFailureWithUsernameAlreadyExistsException(){
-    context.checking(new Expectations(){{
+  public void messageForExistingUsernameIsSetOnFailureWithUsernameAlreadyExistsException() {
+    context.checking(new Expectations() {{
       oneOf(registerView).getUser();
       will(returnValue(user));
       oneOf(bankServiceAsync).register(with(userInstanceMatcher), with(asyncCallbackInstanceMatcher));
@@ -135,11 +135,11 @@ public class RegisterPresenterTest {
   /**
    * Fake Handler which implements my custom EventHandler. Used to test the behavior that the event bus fire an event in a presenter method
    */
-  class FakeHandler implements GoToLoginButtonClickedEventHandler{
+  class FakeHandler implements GoToLoginButtonClickedEventHandler {
     private boolean eventWasFired = false;
 
     public void assertHasReceivedClickEvent() {
-      assertThat(eventWasFired,is(equalTo(true)));
+      assertThat(eventWasFired, is(equalTo(true)));
     }
 
     @Override
@@ -150,19 +150,19 @@ public class RegisterPresenterTest {
 
 
   /**
-   *Test the behavior of onGoToLoginButtonClicked with a fake event handler
+   * Test the behavior of onGoToLoginButtonClicked with a fake event handler
    */
   @Test
-  public void fireEventBus(){
+  public void fireEventBus() {
     SimpleEventBus eventBus = new SimpleEventBus();
     FakeHandler fakeHandler = new FakeHandler();
 
 
-     RegisterPresenter registerPresenter1 = new RegisterPresenter(bankServiceAsync, eventBus,registerView);
+    RegisterPresenter registerPresenter1 = new RegisterPresenter(bankServiceAsync, eventBus, registerView);
     eventBus.addHandler(new GoToLoginButtonClickedEvent().getAssociatedType(), fakeHandler);
 
 
-    context.checking(new Expectations(){{
+    context.checking(new Expectations() {{
       oneOf(registerView).setStatusMessage("");
     }});
 
@@ -170,5 +170,59 @@ public class RegisterPresenterTest {
 
     fakeHandler.assertHasReceivedClickEvent();
   }
+
+
+  @Test
+  public void serviceMethodIsNotInvokedInCaseOfShorttUsername() {
+    final User userWithShortUsername = new User("Sh", "password");
+
+    context.checking(new Expectations() {{
+      oneOf(registerView).getUser();
+      will(returnValue(userWithShortUsername));
+      oneOf(registerView).setStatusMessage("Username and password must be 5 to 20 symbols long letters and numbers only.");
+    }});
+
+    registerPresenter.registerUser();
+  }
+
+  @Test
+  public void serviceMethodIsNotInvokedInCaseOfUsernameWithProhibitedSymbols() {
+    final User userWithUsernameWithProhibitedSymbols = new User("Usern!%", "password");
+
+    context.checking(new Expectations() {{
+      oneOf(registerView).getUser();
+      will(returnValue(userWithUsernameWithProhibitedSymbols));
+      oneOf(registerView).setStatusMessage("Username and password must be 5 to 20 symbols long letters and numbers only.");
+    }});
+
+    registerPresenter.registerUser();
+  }
+
+  @Test
+  public void serviceMethodIsNotInvokedInCaseOfShortPassword() {
+    final User userWithShortPassword = new User("Username", "pa");
+
+    context.checking(new Expectations() {{
+      oneOf(registerView).getUser();
+      will(returnValue(userWithShortPassword));
+      oneOf(registerView).setStatusMessage("Username and password must be 5 to 20 symbols long letters and numbers only.");
+    }});
+
+    registerPresenter.registerUser();
+  }
+
+  @Test
+  public void serviceMethodIsNotInvokedInCaseOfPasswordWithProhibitedSymbols() {
+    final User userWithPasswordWithProhibitedSymbols = new User("Username", "pa-ssword");
+
+    context.checking(new Expectations() {{
+      oneOf(registerView).getUser();
+      will(returnValue(userWithPasswordWithProhibitedSymbols));
+      oneOf(registerView).setStatusMessage("Username and password must be 5 to 20 symbols long letters and numbers only.");
+    }});
+
+    registerPresenter.registerUser();
+  }
+
 
 }
