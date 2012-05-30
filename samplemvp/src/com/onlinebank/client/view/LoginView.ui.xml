@@ -25,6 +25,7 @@
     <g:Label>password:</g:Label>
     <g:PasswordTextBox ui:field="passwordRegisterTextBox"/>
     <g:Button styleName="{style.loginButtonStyle}" ui:field="loginButton">Login</g:Button>
+    <g:Label ui:field="statusMessageLabel"/>
     <g:Button styleName="{style.goToRegistrationButtonStyle}" ui:field="goToRegistrationButton">go to registration</g:Button>
   </g:HTMLPanel>
 
