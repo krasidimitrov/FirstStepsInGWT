@@ -12,8 +12,10 @@ import com.onlinebank.client.event.GoToRegistrationButtonClickedEventHandler;
 import com.onlinebank.client.presenter.LoginPresenter;
 import com.onlinebank.client.presenter.Presenter;
 import com.onlinebank.client.presenter.RegisterPresenter;
-import com.onlinebank.client.view.LoginViewImpl;
+import com.onlinebank.client.presenter.RegistrationMessageImpl;
+import com.onlinebank.client.presenter.UserPanelPresenter;import com.onlinebank.client.view.LoginViewImpl;
 import com.onlinebank.client.view.RegisterViewImpl;
+import com.onlinebank.client.view.UserPanelViewImpl;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
@@ -25,6 +27,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
   private HasWidgets container;
   private RegisterViewImpl registerView = null;
   private LoginViewImpl loginView = null;
+  private UserPanelViewImpl userPanelView = null;
 
   public AppController(BankServiceAsync rpcService, EventBus eventBus) {
 
@@ -56,7 +59,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     this.container = container;
 
     if ("".equals(History.getToken())) {
-      History.newItem("register");
+      History.newItem("login");
     } else {
       History.fireCurrentHistoryState();
     }
@@ -73,7 +76,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
           registerView = new RegisterViewImpl();
         }
 
-        new RegisterPresenter(rpcService, eventBus, registerView).go(container);
+        new RegisterPresenter(rpcService, eventBus, registerView, new RegistrationMessageImpl()).go(container);
       }
       if (token.equals("login")) {
 
@@ -82,6 +85,15 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         }
 
         new LoginPresenter(rpcService, eventBus, loginView).go(container);
+      }
+
+      if (token.equals("userPanel")){
+
+        if(userPanelView == null){
+          userPanelView = new UserPanelViewImpl();
+        }
+
+        new UserPanelPresenter(rpcService, eventBus, userPanelView).go(container);
       }
     }
 

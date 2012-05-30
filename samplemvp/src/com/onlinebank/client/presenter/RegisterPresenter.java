@@ -19,18 +19,20 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
   private final BankServiceAsync rpcService;
   private final EventBus eventBus;
   private final RegisterView registerView;
+  private final RegistrationMessages registrationMessages;
 
-  public RegisterPresenter(BankServiceAsync rpcService, EventBus eventBus, RegisterView registerView) {
+  public RegisterPresenter(BankServiceAsync rpcService, EventBus eventBus, RegisterView registerView, RegistrationMessages registrationMessages) {
 
     this.rpcService = rpcService;
     this.eventBus = eventBus;
     this.registerView = registerView;
-   }
+    this.registrationMessages = registrationMessages;
+  }
 
   @Override
   public void go(HasWidgets container) {
     container.clear();
-    this.registerView.setPresenter(this);
+    registerView.setPresenter(this);
     container.add((Widget) registerView);
   }
 
@@ -49,7 +51,7 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
     User user = registerView.getUser();
     if(!user.getUsername().matches("^[A-Za-z0-9]{5,20}$") || !user.getPassword().matches("^[A-Za-z0-9]{5,20}$"))
     {
-      registerView.setStatusMessage("Username and password must be 5 to 20 symbols long letters and numbers only.");
+      registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());
       return;
     }
 
@@ -57,15 +59,16 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
       @Override
       public void onFailure(Throwable caught) {
         if(caught instanceof IncorrectDataFormatException){
-        registerView.setStatusMessage("Username and password must be 5 to 20 symbols long");}
+        registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());}
         else if (caught instanceof UsernameAlreadyExistsException){
-          registerView.setStatusMessage("Username already exists. Try another one.");
+          registerView.setStatusMessage(registrationMessages.getUsernameAlreadyExistsMessage());
         }
       }
 
       @Override
       public void onSuccess(Void result) {
-        registerView.setStatusMessage("Registration Successful!");
+
+        registerView.setStatusMessage(registrationMessages.getSuccessMessage());
       }
 
     });
