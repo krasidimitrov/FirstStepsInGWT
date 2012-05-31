@@ -6,7 +6,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -21,7 +20,6 @@ import com.onlinebank.client.model.User;
 public class RegisterViewImpl extends Composite implements RegisterView {
 
   private Presenter presenter;
-
 
 
   @UiTemplate("RegisterView.ui.xml")
@@ -45,29 +43,24 @@ public class RegisterViewImpl extends Composite implements RegisterView {
     initWidget(ourUiBinder.createAndBindUi(this));
   }
 
-  public void setPresenter(Presenter presenter){
+  public void setPresenter(Presenter presenter) {
     this.presenter = presenter;
   }
 
-  public User getUser(){
+  public User getUser() {
     return new User(usernameTextBox.getText(), passwordTextBox.getText());
   }
 
-  @Override
-  public void redirectToMainPage() {
-    History.newItem("login");
-  }
-
   @UiHandler("goToLoginButton")
-  void onGoToLoginButtonClicked(ClickEvent event){
-    if(presenter != null){
+  void onGoToLoginButtonClicked(ClickEvent event) {
+    if (presenter != null) {
       presenter.onGoToLoginButtonClicked();
     }
   }
 
   @UiHandler("registerButton")
-  void onRegisterButtonClicked(ClickEvent event){
-    if(presenter != null){
+  void onRegisterButtonClicked(ClickEvent event) {
+    if (presenter != null) {
       presenter.onRegisterButtonClicked();
     }
   }
@@ -76,4 +69,5 @@ public class RegisterViewImpl extends Composite implements RegisterView {
   public void setStatusMessage(String text) {
     statusMessageLabel.setText(text);
   }
+
 }
