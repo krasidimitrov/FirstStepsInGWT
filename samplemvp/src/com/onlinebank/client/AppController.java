@@ -9,6 +9,7 @@ import com.onlinebank.client.event.GoToLoginButtonClickedEvent;
 import com.onlinebank.client.event.GoToLoginButtonClickedEventHandler;
 import com.onlinebank.client.event.GoToRegistrationButtonClickedEvent;
 import com.onlinebank.client.event.GoToRegistrationButtonClickedEventHandler;
+import com.onlinebank.client.presenter.LoginMessagesImpl;
 import com.onlinebank.client.presenter.LoginPresenter;
 import com.onlinebank.client.presenter.Presenter;
 import com.onlinebank.client.presenter.RegisterPresenter;
@@ -84,7 +85,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
           loginView = new LoginViewImpl();
         }
 
-        new LoginPresenter(rpcService, eventBus, loginView).go(container);
+        new LoginPresenter(rpcService, eventBus, loginView, new LoginMessagesImpl()).go(container);
       }
 
       if (token.equals("userPanel")){
