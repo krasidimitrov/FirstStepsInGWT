@@ -23,7 +23,7 @@
     <g:Label>username:</g:Label>
     <g:TextBox ui:field="usernameLoginTextBox"/>
     <g:Label>password:</g:Label>
-    <g:PasswordTextBox ui:field="passwordRegisterTextBox"/>
+    <g:PasswordTextBox ui:field="passwordLoginTextBox"/>
     <g:Button styleName="{style.loginButtonStyle}" ui:field="loginButton">Login</g:Button>
     <g:Label ui:field="statusMessageLabel"/>
     <g:Button styleName="{style.goToRegistrationButtonStyle}" ui:field="goToRegistrationButton">go to registration</g:Button>

@@ -7,6 +7,14 @@ import com.google.gwt.user.client.ui.Widget;
  */
 public interface LoginView {
 
+
+  String getUsername();
+  String getPassword();
+
+  void goToUserPage();
+
+  void setStatusMessage(String message);
+
   public interface Presenter {
     void onLoginButtonClicked();
     void onGotToRegistrationButtonClicked();
