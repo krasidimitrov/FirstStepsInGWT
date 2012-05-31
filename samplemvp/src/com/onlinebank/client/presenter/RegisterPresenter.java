@@ -14,7 +14,7 @@ import com.onlinebank.client.view.RegisterView;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class RegisterPresenter implements Presenter, RegisterView.Presenter{
+public class RegisterPresenter implements Presenter, RegisterView.Presenter {
 
   private final BankServiceAsync rpcService;
   private final EventBus eventBus;
@@ -49,8 +49,7 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
 
   public void registerUser() {
     User user = registerView.getUser();
-    if(!user.getUsername().matches("^[A-Za-z0-9]{5,20}$") || !user.getPassword().matches("^[A-Za-z0-9]{5,20}$"))
-    {
+    if (!user.getUsername().matches("^[A-Za-z0-9]{5,20}$") || !user.getPassword().matches("^[A-Za-z0-9]{5,20}$")) {
       registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());
       return;
     }
@@ -58,9 +57,9 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter{
     rpcService.register(user, new AsyncCallback<Void>() {
       @Override
       public void onFailure(Throwable caught) {
-        if(caught instanceof IncorrectDataFormatException){
-        registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());}
-        else if (caught instanceof UsernameAlreadyExistsException){
+        if (caught instanceof IncorrectDataFormatException) {
+          registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());
+        } else if (caught instanceof UsernameAlreadyExistsException) {
           registerView.setStatusMessage(registrationMessages.getUsernameAlreadyExistsMessage());
         }
       }
