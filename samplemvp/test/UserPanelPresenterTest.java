@@ -124,4 +124,5 @@ public class UserPanelPresenterTest {
     withdrawAsyncCallbackInstanceMatcher.getInstance().onFailure(new InsufficientBalanceException());
 
   }
+
 }
