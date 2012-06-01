@@ -5,17 +5,17 @@ package com.onlinebank.client.presenter;
  */
 public class RegistrationMessageImpl implements RegistrationMessages{
   @Override
-  public String getSuccessMessage() {
+  public String registrationSuccessful() {
     return "Registration successful!";
   }
 
   @Override
-  public String getWrongUsernameOrPasswordMessage() {
+  public String WrongUsernameOrPasswordFormat() {
     return "Username and password must be between 5 and 20 symbols. Letters and numbers only";
   }
 
   @Override
-  public String getUsernameAlreadyExistsMessage() {
+  public String usernameAlreadyExists() {
     return "Username already exists. Try another one.";
   }
 }

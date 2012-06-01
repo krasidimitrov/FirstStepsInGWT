@@ -89,8 +89,7 @@ public class RegisterPresenterTest {
       oneOf(registerView).getUser();
       will(returnValue(user));
       oneOf(bankServiceAsync).register(with(userInstanceMatcher), with(asyncCallbackInstanceMatcher));
-
-      oneOf(registrationMessages).getSuccessMessage();
+      oneOf(registrationMessages).registrationSuccessful();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});
@@ -107,7 +106,7 @@ public class RegisterPresenterTest {
       oneOf(registerView).getUser();
       will(returnValue(user));
       oneOf(bankServiceAsync).register(with(userInstanceMatcher), with(asyncCallbackInstanceMatcher));
-      oneOf(registrationMessages).getWrongUsernameOrPasswordMessage();
+      oneOf(registrationMessages).WrongUsernameOrPasswordFormat();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});
@@ -122,7 +121,7 @@ public class RegisterPresenterTest {
       oneOf(registerView).getUser();
       will(returnValue(user));
       oneOf(bankServiceAsync).register(with(userInstanceMatcher), with(asyncCallbackInstanceMatcher));
-      oneOf(registrationMessages).getUsernameAlreadyExistsMessage();
+      oneOf(registrationMessages).usernameAlreadyExists();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});
@@ -178,7 +177,7 @@ public class RegisterPresenterTest {
     context.checking(new Expectations() {{
       oneOf(registerView).getUser();
       will(returnValue(userWithShortUsername));
-      oneOf(registrationMessages).getWrongUsernameOrPasswordMessage();
+      oneOf(registrationMessages).WrongUsernameOrPasswordFormat();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});
@@ -193,7 +192,7 @@ public class RegisterPresenterTest {
     context.checking(new Expectations() {{
       oneOf(registerView).getUser();
       will(returnValue(userWithUsernameWithProhibitedSymbols));
-      oneOf(registrationMessages).getWrongUsernameOrPasswordMessage();
+      oneOf(registrationMessages).WrongUsernameOrPasswordFormat();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});
@@ -208,7 +207,7 @@ public class RegisterPresenterTest {
     context.checking(new Expectations() {{
       oneOf(registerView).getUser();
       will(returnValue(userWithShortPassword));
-      oneOf(registrationMessages).getWrongUsernameOrPasswordMessage();
+      oneOf(registrationMessages).WrongUsernameOrPasswordFormat();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});
@@ -223,7 +222,7 @@ public class RegisterPresenterTest {
     context.checking(new Expectations() {{
       oneOf(registerView).getUser();
       will(returnValue(userWithPasswordWithProhibitedSymbols));
-      oneOf(registrationMessages).getWrongUsernameOrPasswordMessage();
+      oneOf(registrationMessages).WrongUsernameOrPasswordFormat();
       will(returnValue(message));
       oneOf(registerView).setStatusMessage(message);
     }});

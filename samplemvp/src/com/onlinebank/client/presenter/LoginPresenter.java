@@ -51,10 +51,10 @@ public class LoginPresenter implements Presenter, LoginView.Presenter {
       @Override
       public void onFailure(Throwable caught) {
         if (caught instanceof UserNotRegisteredException) {
-          loginView.setStatusMessage(loginMessages.getNotRegisteredMessage());
+          loginView.setStatusMessage(loginMessages.usernameNotRegistered());
         }
         if (caught instanceof WrongPasswordException){
-          loginView.setStatusMessage(loginMessages.getWrongPasswordMessage());
+          loginView.setStatusMessage(loginMessages.wrongPassword());
         }
       }
 

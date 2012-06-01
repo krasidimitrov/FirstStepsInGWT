@@ -50,7 +50,7 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter {
   public void registerUser() {
     User user = registerView.getUser();
     if (!user.getUsername().matches("^[A-Za-z0-9]{5,20}$") || !user.getPassword().matches("^[A-Za-z0-9]{5,20}$")) {
-      registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());
+      registerView.setStatusMessage(registrationMessages.WrongUsernameOrPasswordFormat());
       return;
     }
 
@@ -58,16 +58,16 @@ public class RegisterPresenter implements Presenter, RegisterView.Presenter {
       @Override
       public void onFailure(Throwable caught) {
         if (caught instanceof IncorrectDataFormatException) {
-          registerView.setStatusMessage(registrationMessages.getWrongUsernameOrPasswordMessage());
+          registerView.setStatusMessage(registrationMessages.WrongUsernameOrPasswordFormat());
         } else if (caught instanceof UsernameAlreadyExistsException) {
-          registerView.setStatusMessage(registrationMessages.getUsernameAlreadyExistsMessage());
+          registerView.setStatusMessage(registrationMessages.usernameAlreadyExists());
         }
       }
 
       @Override
       public void onSuccess(Void result) {
 
-        registerView.setStatusMessage(registrationMessages.getSuccessMessage());
+        registerView.setStatusMessage(registrationMessages.registrationSuccessful());
       }
 
     });

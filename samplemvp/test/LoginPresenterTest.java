@@ -75,7 +75,7 @@ public class LoginPresenterTest {
   public void messageForNonExistingUsernameIsSetOnLoginOnFailureWithUserNotRegisteredException(){
     context.checking(new Expectations(){{
       oneOf(bankServiceAsync).login(with(username), with(password), with(asyncCallbackInstanceMatcher));
-      oneOf(loginMessages).getNotRegisteredMessage();
+      oneOf(loginMessages).usernameNotRegistered();
       will(returnValue(message));
       oneOf(loginView).setStatusMessage(message);
     }});
@@ -90,7 +90,7 @@ public class LoginPresenterTest {
     context.checking(new Expectations(){{
       
       oneOf(bankServiceAsync).login(with(username), with(password), with(asyncCallbackInstanceMatcher));
-      oneOf(loginMessages).getWrongPasswordMessage();
+      oneOf(loginMessages).wrongPassword();
       will(returnValue(message));
       oneOf(loginView).setStatusMessage(message);
     }});
