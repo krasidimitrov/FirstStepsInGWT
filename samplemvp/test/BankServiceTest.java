@@ -1,4 +1,5 @@
 import com.onlinebank.client.exception.IncorrectDataFormatException;
+import com.onlinebank.client.exception.InsufficientBalanceException;
 import com.onlinebank.client.exception.UserNotRegisteredException;
 import com.onlinebank.client.exception.UsernameAlreadyExistsException;
 import com.onlinebank.client.exception.WrongPasswordException;
@@ -10,6 +11,10 @@ import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.math.BigDecimal;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
@@ -18,14 +23,17 @@ public class BankServiceTest {
 
   Mockery context = new JUnit4Mockery();
 
-  User user = new User("Lilith", "abc123");
-  UserRepository userRepository = context.mock(UserRepository.class);
-  AccountRepository accountRepository = context.mock(AccountRepository.class);
+  private User user = new User("Lilith", "abc123");
+  private int accontId = 1;
+  private UserRepository userRepository = context.mock(UserRepository.class);
+  private AccountRepository accountRepository = context.mock(AccountRepository.class);
 
-  BankServiceImpl bankService = new BankServiceImpl(userRepository);
+  private BankServiceImpl bankService = new BankServiceImpl(userRepository);
 
   class BankServiceImpl {
     UserRepository userRepository;
+    int accId = 1;
+
 
     public BankServiceImpl(UserRepository userRepository) {
       this.userRepository = userRepository;
@@ -54,6 +62,26 @@ public class BankServiceTest {
         throw new WrongPasswordException();
       }
 
+    }
+
+    public BigDecimal deposit(BigDecimal ammount) {
+      BigDecimal currentBalance = accountRepository.getBalance(accId);
+      BigDecimal newBalance = currentBalance.add(ammount);
+      accountRepository.updateBalance(accId,newBalance);
+
+      return newBalance; 
+    }
+
+    public BigDecimal withdraw(BigDecimal ammount) {
+      
+      BigDecimal currentBalance = accountRepository.getBalance(accId);
+      BigDecimal newBalance = currentBalance.subtract(ammount);
+      if(newBalance.compareTo(BigDecimal.ZERO) == -1){
+        throw new InsufficientBalanceException();
+      } else {
+        accountRepository.updateBalance(accId, newBalance);
+        return newBalance;
+      }
     }
   }
 
@@ -93,12 +121,25 @@ public class BankServiceTest {
   interface AccountRepository {
     void createAccount(int userId);
 
+    BigDecimal getBalance(int accontId);
+
+    void updateBalance(int accontId, BigDecimal newBalance);
   }
 
   class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public void createAccount(int userId) {
+      //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public BigDecimal getBalance(int accontId) {
+      return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void updateBalance(int accontId, BigDecimal newBalance) {
       //To change body of implemented methods use File | Settings | File Templates.
     }
   }
@@ -177,4 +218,51 @@ public class BankServiceTest {
     bankService.login(user.getUsername(), user.getPassword());
   }
 
+  @Test
+  public void depositHappyPath(){
+    final BigDecimal currentBalance = new BigDecimal(100);
+    final BigDecimal newBalance = new BigDecimal(150);
+    final BigDecimal actualNewBalance;
+     context.checking(new Expectations(){{
+       oneOf(accountRepository).getBalance(accontId);
+       will(returnValue(currentBalance));
+       oneOf(accountRepository).updateBalance(accontId, newBalance);
+     }});
+    
+    actualNewBalance = bankService.deposit(new BigDecimal(50));
+    assertEquals(newBalance, actualNewBalance);
+  }
+  
+  
+  
+  @Test
+  public void withdrawHappyPath(){
+    final BigDecimal currentBalance = new BigDecimal(100);
+    final BigDecimal newBalance = new BigDecimal(50);
+    final BigDecimal actualBalance;
+    
+    context.checking(new Expectations(){{
+      oneOf(accountRepository).getBalance(accontId);
+      will(returnValue(currentBalance));
+      oneOf(accountRepository).updateBalance(accontId, newBalance);
+    }});
+    
+    actualBalance = bankService.withdraw(new BigDecimal(50));
+    assertEquals(newBalance, actualBalance);
+  }
+
+  
+  @Test (expected = InsufficientBalanceException.class)
+  public void withdrawWillThrowExceptionIfTheCurrentBalanceIsNotEnough(){
+    final BigDecimal currentBalance = new BigDecimal(100);
+    final BigDecimal newBalance = new BigDecimal(-100);
+    
+    context.checking(new Expectations(){{
+      oneOf(accountRepository).getBalance(accontId);
+      will(returnValue(currentBalance));
+    }
+    });
+    
+    bankService.withdraw(new BigDecimal(200));
+  }
 }
