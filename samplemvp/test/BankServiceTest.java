@@ -4,6 +4,7 @@ import com.onlinebank.client.exception.UserNotRegisteredException;
 import com.onlinebank.client.exception.UsernameAlreadyExistsException;
 import com.onlinebank.client.exception.WrongPasswordException;
 import com.onlinebank.client.model.User;
+import com.onlinebank.server.UserRepository;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
@@ -16,8 +17,8 @@ import java.math.BigDecimal;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
- */
+* @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
+*/
 @RunWith(JMock.class)
 public class BankServiceTest {
 
@@ -40,25 +41,23 @@ public class BankServiceTest {
     }
 
     void register(User user) {
-      int userId;
-      if (user.getUsername().matches("^[A-Za-z0-9]{5,20}$") && user.getPassword().matches("^[A-Za-z0-9]{5,20}$")) {
-        if (userRepository.getUsername(user.getUsername()).equals("")) {
-          userId = userRepository.getUserId(user.getUsername());
-          userRepository.save(user);
-          accountRepository.createAccount(userId);
-        } else {
-          throw new UsernameAlreadyExistsException();
-        }
+     if(!user.isValid())  {
+       throw new IncorrectDataFormatException();
+     }
+
+      if (userRepository.getUser(user.getUsername()) == null){
+        int idOfRegisteredUser = userRepository.save(user);
+        accountRepository.createAccount(idOfRegisteredUser);
       } else {
-        throw new IncorrectDataFormatException();
+        throw new UsernameAlreadyExistsException();
       }
     }
 
     public void login(String username, String password) {
-      String passwordInRepository = userRepository.getPassword(username);
-      if(passwordInRepository.equals("")){
+      User loginUser = userRepository.getUser(username);
+      if(loginUser == null){
         throw new UserNotRegisteredException();
-      } else if(!passwordInRepository.equals(password))  {
+      } else if(!loginUser.getPassword().equals(password)){
         throw new WrongPasswordException();
       }
 
@@ -67,16 +66,16 @@ public class BankServiceTest {
     public BigDecimal deposit(BigDecimal ammount) {
       BigDecimal currentBalance = accountRepository.getBalance(accId);
       BigDecimal newBalance = currentBalance.add(ammount);
-      accountRepository.updateBalance(accId,newBalance);
+      accountRepository.updateBalance(accId, newBalance);
 
-      return newBalance; 
+      return newBalance;
     }
 
     public BigDecimal withdraw(BigDecimal ammount) {
-      
+
       BigDecimal currentBalance = accountRepository.getBalance(accId);
       BigDecimal newBalance = currentBalance.subtract(ammount);
-      if(newBalance.compareTo(BigDecimal.ZERO) == -1){
+      if (newBalance.compareTo(BigDecimal.ZERO) == -1) {
         throw new InsufficientBalanceException();
       } else {
         accountRepository.updateBalance(accId, newBalance);
@@ -85,38 +84,6 @@ public class BankServiceTest {
     }
   }
 
-  interface UserRepository {
-    String getUsername(String username);
-
-    int getUserId(String username);
-
-    void save(User user);
-
-    String getPassword(String username);
-  }
-
-  class UserRepositoryImpl implements UserRepository {
-
-    @Override
-    public String getUsername(String username) {
-      return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public int getUserId(String username) {
-      return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void save(User user) {
-      //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public String getPassword(String username) {
-      return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-  }
 
   interface AccountRepository {
     void createAccount(int userId);
@@ -148,10 +115,9 @@ public class BankServiceTest {
   public void registerWillSendTheUserForSavingAlongWithAccount() {
     final int userId = 1;
     context.checking(new Expectations() {{
-      oneOf(userRepository).getUsername(user.getUsername());
-      will(returnValue(""));
+      oneOf(userRepository).getUser(user.getUsername());
+      will(returnValue(null));
       oneOf(userRepository).save(user);
-      oneOf(userRepository).getUserId(user.getUsername());
       will(returnValue(userId));
       oneOf(accountRepository).createAccount(userId);
     }});
@@ -159,110 +125,97 @@ public class BankServiceTest {
     bankService.register(user);
   }
 
-  @Test(expected = UsernameAlreadyExistsException.class)
-  public void registerWillThrowExceptionIfUsernameAlreadyExists() {
 
-    context.checking(new Expectations() {
-      {
-
-        oneOf(userRepository).getUsername(user.getUsername());
-        will(returnValue("Lilith"));
-      }
-    });
-
-    bankService.register(user);
-
-  }
-  
   @Test(expected = IncorrectDataFormatException.class)
-  public void registerWillThrowExceptionIfUsernameIsIncorrectFormat(){
-    final User userWithIncorrectUsername = new User("Lilith%" , "correct");
+  public void registerWillThrowExceptionIfUsernameIsIncorrectFormat() {
+    final User userWithIncorrectUsername = new User("Lilith%", "correct");
     bankService.register(userWithIncorrectUsername);
   }
+
   @Test(expected = IncorrectDataFormatException.class)
-  public void registerWillThrowExceptionIfPasswordIsIncorrectFormat(){
-    final User userWithIncorrectPassword = new User("Lilith" , "whe!r$");
+  public void registerWillThrowExceptionIfPasswordIsIncorrectFormat() {
+    final User userWithIncorrectPassword = new User("Lilith", "whe!r$");
     bankService.register(userWithIncorrectPassword);
   }
 
+
   @Test
-  public void loginHappyPath(){
-    context.checking(new Expectations(){{
-      oneOf(userRepository).getPassword(user.getUsername());
-      will(returnValue("abc123"));
+  public void loginHappyPath() {
+    context.checking(new Expectations() {{
+      oneOf(userRepository).getUser("Lilith");
+      will(returnValue(user));
     }});
-    
-    bankService.login(user.getUsername(),user.getPassword());
+
+    bankService.login("Lilith", "abc123");
   }
-  
-  @Test (expected = UserNotRegisteredException.class)
-  public void loginWillThrowExceptionIfUsernameIsNotRegistered(){
-    
-    context.checking(new Expectations(){{
-      oneOf(userRepository).getPassword(user.getUsername());
-      will(returnValue(""));
+
+  @Test(expected = UserNotRegisteredException.class)
+  public void loginWillThrowExceptionIfUsernameIsNotRegistered() {
+
+    context.checking(new Expectations() {{
+      oneOf(userRepository).getUser("Lilith");
+      will(returnValue(null));
 
     }});
 
-    bankService.login(user.getUsername(), user.getPassword());
+    bankService.login("Lilith", "abc123");
   }
-  
+
   @Test(expected = WrongPasswordException.class)
-  public void loginWillThrowExceptionIfPasswordIsIncorrect(){
-  
-    context.checking(new Expectations(){{
-      oneOf(userRepository).getPassword(user.getUsername());
-      will(returnValue("notMatching"));
+  public void loginWillThrowExceptionIfPasswordIsIncorrect() {
+
+    context.checking(new Expectations() {{
+      oneOf(userRepository).getUser("Lilith");
+      will(returnValue(user));
     }});
-    
-    bankService.login(user.getUsername(), user.getPassword());
+
+    bankService.login("Lilith", "wrongPassword");
   }
 
   @Test
-  public void depositHappyPath(){
+  public void depositHappyPath() {
     final BigDecimal currentBalance = new BigDecimal(100);
     final BigDecimal newBalance = new BigDecimal(150);
     final BigDecimal actualNewBalance;
-     context.checking(new Expectations(){{
-       oneOf(accountRepository).getBalance(accontId);
-       will(returnValue(currentBalance));
-       oneOf(accountRepository).updateBalance(accontId, newBalance);
-     }});
-    
-    actualNewBalance = bankService.deposit(new BigDecimal(50));
-    assertEquals(newBalance, actualNewBalance);
-  }
-  
-  
-  
-  @Test
-  public void withdrawHappyPath(){
-    final BigDecimal currentBalance = new BigDecimal(100);
-    final BigDecimal newBalance = new BigDecimal(50);
-    final BigDecimal actualBalance;
-    
-    context.checking(new Expectations(){{
+    context.checking(new Expectations() {{
       oneOf(accountRepository).getBalance(accontId);
       will(returnValue(currentBalance));
       oneOf(accountRepository).updateBalance(accontId, newBalance);
     }});
-    
+
+    actualNewBalance = bankService.deposit(new BigDecimal(50));
+    assertEquals(newBalance, actualNewBalance);
+  }
+
+
+  @Test
+  public void withdrawHappyPath() {
+    final BigDecimal currentBalance = new BigDecimal(100);
+    final BigDecimal newBalance = new BigDecimal(50);
+    final BigDecimal actualBalance;
+
+    context.checking(new Expectations() {{
+      oneOf(accountRepository).getBalance(accontId);
+      will(returnValue(currentBalance));
+      oneOf(accountRepository).updateBalance(accontId, newBalance);
+    }});
+
     actualBalance = bankService.withdraw(new BigDecimal(50));
     assertEquals(newBalance, actualBalance);
   }
 
-  
-  @Test (expected = InsufficientBalanceException.class)
-  public void withdrawWillThrowExceptionIfTheCurrentBalanceIsNotEnough(){
+
+  @Test(expected = InsufficientBalanceException.class)
+  public void withdrawWillThrowExceptionIfTheCurrentBalanceIsNotEnough() {
     final BigDecimal currentBalance = new BigDecimal(100);
-    final BigDecimal newBalance = new BigDecimal(-100);
-    
-    context.checking(new Expectations(){{
-      oneOf(accountRepository).getBalance(accontId);
-      will(returnValue(currentBalance));
-    }
+
+    context.checking(new Expectations() {
+      {
+        oneOf(accountRepository).getBalance(accontId);
+        will(returnValue(currentBalance));
+      }
     });
-    
+
     bankService.withdraw(new BigDecimal(200));
   }
 }
