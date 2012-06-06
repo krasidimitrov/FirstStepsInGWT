@@ -1,35 +1,45 @@
 package com.onlinebank.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.onlinebank.client.BankService;
-import com.onlinebank.client.exception.IncorrectDataFormatException;
-import com.onlinebank.client.model.User;
+import com.onlinebank.client.exception.InsufficientBalanceException;
 
 import java.math.BigDecimal;
 
+@Singleton
 public class BankServiceImpl extends RemoteServiceServlet implements BankService {
 
-  @Override
-  public void register(User user) {
-    if(user.getUsername().matches("^[A-Za-z0-9]{5,20}$")){
-      return;
+  @Inject
+  private AccountRepository accountRepository;
+  private int accId = 1;
+
+  public BankServiceImpl(){
+
+  }
+
+  public BankServiceImpl(AccountRepository accountRepository) {
+    this.accountRepository = accountRepository;
+  }
+
+  public BigDecimal deposit(BigDecimal amount) {
+    BigDecimal currentBalance = accountRepository.getBalance(accId);
+    BigDecimal newBalance = currentBalance.add(amount);
+    accountRepository.updateBalance(accId, newBalance);
+
+    return newBalance;
+  }
+
+  public BigDecimal withdraw(BigDecimal amount) {
+
+    BigDecimal currentBalance = accountRepository.getBalance(accId);
+    BigDecimal newBalance = currentBalance.subtract(amount);
+    if (newBalance.compareTo(BigDecimal.ZERO) == -1) {
+      throw new InsufficientBalanceException();
     } else {
-      throw new IncorrectDataFormatException();
+      accountRepository.updateBalance(accId, newBalance);
+      return newBalance;
     }
-  }
-
-  @Override
-  public User login(String username, String password) {
-   return null;
-  }
-
-  @Override
-  public BigDecimal deposit(BigDecimal money) {
-    return new BigDecimal(10);
-  }
-
-  @Override
-  public BigDecimal withdraw(BigDecimal money) {
-    return new BigDecimal(5);
   }
 }

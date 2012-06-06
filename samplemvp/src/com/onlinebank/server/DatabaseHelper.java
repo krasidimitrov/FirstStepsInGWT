@@ -20,10 +20,10 @@ public class DatabaseHelper {
 
   private MysqlDataSource dataSource;
 
-  public DatabaseHelper(String databaseName){
+  public DatabaseHelper(){
     dataSource = new MysqlDataSource();
     dataSource.setServerName("localhost");
-    dataSource.setDatabaseName(databaseName);
+    dataSource.setDatabaseName("GWTBankDatabase");
     dataSource.setUser("kpackapgo");
     dataSource.setPassword("");
   }

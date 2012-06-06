@@ -1,5 +1,6 @@
 package com.onlinebank.server;
 
+import com.google.inject.Inject;
 import com.onlinebank.client.model.User;
 
 /**
@@ -9,20 +10,11 @@ public class UserRepositoryImpl implements UserRepository {
 
   DatabaseHelper databaseHelper;
 
+  @Inject
   public UserRepositoryImpl(DatabaseHelper databaseHelper) {
 
     this.databaseHelper = databaseHelper;
   }
-
-//  @Override
-//  public String getUsername(String username) {
-//    return databaseHelper.executeQueryWithResult("SELECT username FROM Users WHERE username = ?;", username);
-//  }
-//
-//  @Override
-//  public int getUserId(String username) {
-//    return Integer.parseInt(databaseHelper.executeQueryWithResult("SELECT username FROM Users WHERE username = ?;",username));
-//  }
 
   @Override
   public int save(User user) {
@@ -34,9 +26,4 @@ public class UserRepositoryImpl implements UserRepository {
     return databaseHelper.executeQueryThatReturnSpecificObject("SELECT * FROM Users WHERE username = ?", new UserRowMapper(), username);
   }
 
-
-//  @Override
-//  public String getPassword(String username) {
-//    return databaseHelper.executeQueryWithResult("SELECT password FROM Users WHERE username = ?;", username);
-//  }
 }
