@@ -39,6 +39,7 @@
     <g:Button ui:field="depositButton">deposit</g:Button>
     <g:TextBox styleName="{style.withdrawTextBoxStyle}"  ui:field="withdrawTextBox"/>
     <g:Button ui:field="withdrawButton">withdraw</g:Button>
-    <g:Label styleName="{style.balanceLabelStyle}" ui:field="balanceLabel">Balance: 0 $</g:Label>
+    <g:Label styleName="{style.balanceLabelStyle}" ui:field="balanceLabel" />
+    <g:Label ui:field="statusMessageLabel" />
   </g:HTMLPanel>
 </ui:UiBinder>

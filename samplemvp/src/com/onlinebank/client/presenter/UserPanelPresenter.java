@@ -1,6 +1,7 @@
 package com.onlinebank.client.presenter;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
@@ -31,6 +32,22 @@ public class UserPanelPresenter implements Presenter, UserPanelView.Presenter{
     container.clear();
     userPanelView.setPresenter(this);
     container.add((Widget) userPanelView);
+    authorizeUser();
+  }
+
+  public void authorizeUser(){
+    rpcService.isUserAuthorized(new AsyncCallback<Boolean>() {
+      @Override
+      public void onFailure(Throwable caught) {
+        //To change body of implemented methods use File | Settings | File Templates.
+      }
+
+      @Override
+      public void onSuccess(Boolean result) {
+        if(!result)
+          History.newItem("login");
+      }
+    });
   }
 
   @Override
@@ -40,17 +57,17 @@ public class UserPanelPresenter implements Presenter, UserPanelView.Presenter{
 
   @Override
   public void onWithdrawButtonClicked() {
-    //To change body of implemented methods use File | Settings | File Templates.
+    withdraw();
   }
 
   @Override
   public void onLogoutButtonClicked() {
-    //To change body of implemented methods use File | Settings | File Templates.
+    //w change body of implemented methods use File | Settings | File Templates.
   }
 
   public void deposit() {
 
-    rpcService.deposit(new BigDecimal(10), new AsyncCallback<BigDecimal>() {
+    rpcService.deposit(new BigDecimal(userPanelView.getDepositTextBoxText()), new AsyncCallback<BigDecimal>() {
       @Override
       public void onFailure(Throwable caught) {
         if (caught instanceof IncorrectDataFormatException){
@@ -60,7 +77,7 @@ public class UserPanelPresenter implements Presenter, UserPanelView.Presenter{
 
       @Override
       public void onSuccess(BigDecimal result) {
-        userPanelView.setStatusMessage("");
+        userPanelView.setStatusMessage("Deposit Succesful");
         userPanelView.setBalanceShown(result.toString());
       }
     });
@@ -68,7 +85,7 @@ public class UserPanelPresenter implements Presenter, UserPanelView.Presenter{
 
   public void withdraw() {
 
-    rpcService.withdraw(new BigDecimal(10), new AsyncCallback<BigDecimal>() {
+    rpcService.withdraw(new BigDecimal(userPanelView.getWithdrawTextBoxText()), new AsyncCallback<BigDecimal>() {
       @Override
       public void onFailure(Throwable caught) {
         if(caught instanceof  IncorrectDataFormatException){

@@ -3,7 +3,7 @@ USE GWTBankDatabase;
 
 CREATE TABLE Users (
 userId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-username VARCHAR(30) NOT NULL,
+username VARCHAR(30) NOT NULL UNIQUE ,
 password VARCHAR(30) NOT NULL
 ) ENGINE = InnoDB;
 
@@ -14,3 +14,12 @@ balance DECIMAL (11,2) NOT NULL
 ) ENGINE = InnoDB;
 
 ALTER TABLE Accounts ADD CONSTRAINT Users_fk FOREIGN KEY (userId) REFERENCES Users (userId);
+
+CREATE TABLE UsersOnline (
+token VARCHAR(55) NOT NULL UNIQUE,
+username VARCHAR(30) NOT NULL,
+creationTime TIME NOT NULL,
+expirationTime TIME NOT NULL
+) ENGINE = InnoDB;
+
+ALTER TABLE UsersOnline ADD CONSTRAINT Users2_fk FOREIGN KEY (username) REFERENCES Users (username);

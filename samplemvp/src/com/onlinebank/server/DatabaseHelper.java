@@ -1,6 +1,6 @@
 package com.onlinebank.server;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.google.inject.Inject;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,14 +18,17 @@ import java.sql.SQLException;
 */
 public class DatabaseHelper {
 
-  private MysqlDataSource dataSource;
+//  private MysqlDataSource dataSource;
+  private final Provider<Connection> connectionProvider;
 
-  public DatabaseHelper(){
-    dataSource = new MysqlDataSource();
-    dataSource.setServerName("localhost");
-    dataSource.setDatabaseName("GWTBankDatabase");
-    dataSource.setUser("kpackapgo");
-    dataSource.setPassword("");
+  @Inject
+  public DatabaseHelper(Provider<Connection> connectionProvider){
+//    dataSource = new MysqlDataSource();
+//    dataSource.setServerName("localhost");
+//    dataSource.setDatabaseName("GWTBankDatabase");
+//    dataSource.setUser("kpackapgo");
+//    dataSource.setPassword("");
+    this.connectionProvider = connectionProvider;
   }
 
   /**
@@ -37,7 +40,7 @@ public class DatabaseHelper {
   public void executeQuery(String query, Object... params) {
     Connection connection;
     try {
-      connection = dataSource.getConnection();
+      connection = connectionProvider.get();
       PreparedStatement preparedStatement = connection.prepareStatement(query);
 
       fillParams(preparedStatement, params);
@@ -74,7 +77,7 @@ public class DatabaseHelper {
     ResultSet resultSet = null;
     String data = "";
     try {
-      connection = dataSource.getConnection();
+      connection = connectionProvider.get();
       PreparedStatement preparedStatement = connection.prepareStatement(query);
 
       fillParams(preparedStatement, params);
@@ -94,7 +97,7 @@ public class DatabaseHelper {
     int generatedKey = -1;
     ResultSet resultSet;
     try {
-      connection = dataSource.getConnection();
+      connection = connectionProvider.get();
      PreparedStatement preparedStatement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
       fillParams(preparedStatement, params);
@@ -118,7 +121,7 @@ public class DatabaseHelper {
     T objectReturned = null;
 
     try {
-      connection = dataSource.getConnection();
+      connection = connectionProvider.get();
       PreparedStatement preparedStatement = connection.prepareStatement(query);
 
       fillParams(preparedStatement, params);

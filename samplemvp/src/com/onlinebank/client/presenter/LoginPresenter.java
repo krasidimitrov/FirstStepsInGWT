@@ -4,11 +4,11 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.onlinebank.client.BankServiceAsync;
+import com.onlinebank.client.LoginServiceAsync;
 import com.onlinebank.client.event.GoToRegistrationButtonClickedEvent;
 import com.onlinebank.client.exception.UserNotRegisteredException;
 import com.onlinebank.client.exception.WrongPasswordException;
-import com.onlinebank.client.model.User;
+import com.onlinebank.client.model.Sid;
 import com.onlinebank.client.view.LoginView;
 
 /**
@@ -16,12 +16,12 @@ import com.onlinebank.client.view.LoginView;
  */
 public class LoginPresenter implements Presenter, LoginView.Presenter {
 
-  private final BankServiceAsync rpcService;
+  private final LoginServiceAsync rpcService;
   private final EventBus eventBus;
   private final LoginView loginView;
   private final LoginMessages loginMessages;
 
-  public LoginPresenter(BankServiceAsync rpcService, EventBus eventBus, LoginView loginView, LoginMessages loginMessages) {
+  public LoginPresenter(LoginServiceAsync rpcService, EventBus eventBus, LoginView loginView, LoginMessages loginMessages) {
     this.rpcService = rpcService;
     this.eventBus = eventBus;
     this.loginView = loginView;
@@ -47,7 +47,7 @@ public class LoginPresenter implements Presenter, LoginView.Presenter {
   }
 
   public void login(String username, String password) {
-    rpcService.login(username, password, new AsyncCallback<User>() {
+    rpcService.login(username, password, new AsyncCallback<Sid>() {
       @Override
       public void onFailure(Throwable caught) {
         if (caught instanceof UserNotRegisteredException) {
@@ -59,7 +59,7 @@ public class LoginPresenter implements Presenter, LoginView.Presenter {
       }
 
       @Override
-      public void onSuccess(User result) {
+      public void onSuccess(Sid result) {
         loginView.goToUserPage();
       }
     });

@@ -4,7 +4,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Widget;
-import com.onlinebank.client.BankServiceAsync;
+import com.onlinebank.client.RegisterServiceAsync;
 import com.onlinebank.client.event.GoToLoginButtonClickedEvent;
 import com.onlinebank.client.exception.IncorrectDataFormatException;
 import com.onlinebank.client.exception.UsernameAlreadyExistsException;
@@ -16,12 +16,12 @@ import com.onlinebank.client.view.RegisterView;
  */
 public class RegisterPresenter implements Presenter, RegisterView.Presenter {
 
-  private final BankServiceAsync rpcService;
+  private final RegisterServiceAsync rpcService;
   private final EventBus eventBus;
   private final RegisterView registerView;
   private final RegistrationMessages registrationMessages;
 
-  public RegisterPresenter(BankServiceAsync rpcService, EventBus eventBus, RegisterView registerView, RegistrationMessages registrationMessages) {
+  public RegisterPresenter(RegisterServiceAsync rpcService, EventBus eventBus, RegisterView registerView, RegistrationMessages registrationMessages) {
 
     this.rpcService = rpcService;
     this.eventBus = eventBus;

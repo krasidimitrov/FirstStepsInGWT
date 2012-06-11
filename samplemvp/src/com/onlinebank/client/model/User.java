@@ -20,4 +20,29 @@ public class User implements IsSerializable {
     this.username = username;
     this.password = password;
   }
+
+  public User(int userId, String username, String password) {
+    this.userId = userId;
+    this.username = username;
+    this.password = password;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public int getUserId() {
+    return userId;
+  }
+
+  public boolean isValid() {
+    if (!username.matches("^[A-Za-z0-9]{5,20}$") || !password.matches("^[A-Za-z0-9]{5,20}$")) {
+      return false;
+    }
+    return true;
+  }
 }
