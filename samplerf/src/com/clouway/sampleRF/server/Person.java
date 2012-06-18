@@ -55,8 +55,12 @@ public class Person {
 //    databaseHelper.executeQuery("INSERT INTO Persons(username, nickname) VALUES (?,?);", personProxy.getRealName(), personProxy.getNickName());
 //  }
 
-  public void save(String name, String nick){
-    DatabaseHelper databaseHelper = new DatabaseHelper();
-    databaseHelper.executeQuery("INSERT INTO Persons(username, nickname) VALUES (?,?);", name, nick);
+//  public void save(String name, String nick){
+//    DatabaseHelper databaseHelper = new DatabaseHelper();
+//    databaseHelper.executeQuery("INSERT INTO Persons(username, nickname) VALUES (?,?);", name, nick);
+//  }
+
+  public Integer getVersion() {
+    return version;
   }
 }

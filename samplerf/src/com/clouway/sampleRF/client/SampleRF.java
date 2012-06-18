@@ -17,7 +17,7 @@ public class SampleRF implements EntryPoint {
   public void onModuleLoad() {
 
     final EventBus eventBus = new SimpleEventBus();
-    FooRequestFactory requestFactory = GWT.create(FooRequestFactory.class);
+    PersonRequestFactory requestFactory = GWT.create(PersonRequestFactory.class);
     requestFactory.initialize(eventBus);
     SimpleViewImpl simpleView = new SimpleViewImpl(requestFactory);
     RootPanel.get().add(simpleView);
