@@ -55,8 +55,6 @@ public class PersonLocator extends Locator<Person, Long>{
   
   //===========================================
   
-  public void savePerson(String name, String nick){
-    personRepository.save(name,nick);
-  }
+
   
 }
