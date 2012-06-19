@@ -16,11 +16,11 @@ public class SampleRF implements EntryPoint {
    */
   public void onModuleLoad() {
 
-    final EventBus eventBus = new SimpleEventBus();
+    EventBus eventBus = new SimpleEventBus();
     PersonRequestFactory requestFactory = GWT.create(PersonRequestFactory.class);
     requestFactory.initialize(eventBus);
-    SimpleViewImpl simpleView = new SimpleViewImpl(requestFactory);
-    RootPanel.get().add(simpleView);
+    AppController appController = new AppController(requestFactory, eventBus);
+    appController.go(RootPanel.get());
 
 
   }

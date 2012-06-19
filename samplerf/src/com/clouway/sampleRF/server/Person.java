@@ -1,17 +1,11 @@
 package com.clouway.sampleRF.server;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-@Entity
+//@Entity
 public class Person {
 
   @Size(min = 2, max = 15)
@@ -20,13 +14,13 @@ public class Person {
   @Size(min = 1, max = 30)
   private String nickName;
 
-  @Id
-  @Column(name="id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  @Id
+//  @Column(name="id")
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Version
-  @Column(name="version")
+//  @Version
+//  @Column(name="version")
   private Integer version;
 
   public Long getId() {

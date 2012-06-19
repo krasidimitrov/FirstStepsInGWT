@@ -1,6 +1,5 @@
 package com.clouway.sampleRF.server;
 
-import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 import java.sql.Connection;
@@ -20,8 +19,12 @@ import java.sql.SQLException;
 public class DatabaseHelper {
 
 
-  @Inject
+//  @Inject
   Provider<Connection> connectionProvider;
+
+  public DatabaseHelper(){
+   connectionProvider= new ConnectionProvider();
+  }
 
   /**
    * Execute a query with 0 to n parameters
