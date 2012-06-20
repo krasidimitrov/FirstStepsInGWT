@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <g:HTMLPanel>
+    <g:Label>Editing:</g:Label>
+    <g:Label ui:field="nameLabel"/>
+    <g:TextBox ui:field="editNickTextBox"/>
+    <g:Button ui:field="editButton">Change Nick</g:Button>
+  </g:HTMLPanel>
+</ui:UiBinder>

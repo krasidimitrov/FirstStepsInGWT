@@ -1,9 +1,32 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-  <g:HTMLPanel>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:ed='urn:import:com.clouway.sampleRF.client'>
+
+  <ui:style>
+    .formStyle {
+      margin-left: auto;
+      margin-right: auto;
+      width: 160px;
+      background-color: #ffb013;
+    }
+
+    .funny {
+      margin-left: 5px;
+      border-style: ridge;
+      border-color: blue;
+      outline-style: ridge;
+      outline-color: #000000;
+    }
+
+  </ui:style>
+
+  <g:HTMLPanel styleName="{style.formStyle}">
+    <g:Label>Name:</g:Label>
     <g:TextBox ui:field="nameTextBox"/>
-    <g:TextBox ui:field="nickTextBox"/>
-    <g:Button ui:field="savePersonButton">save</g:Button>
-    <g:Button ui:field="getNameButton">get NAME</g:Button>
+    <g:Label>Nick:</g:Label>
+    <g:TextBox ui:field="nickTextBox">gdasgas</g:TextBox>
+    <g:Button ui:field="savePersonButton" styleName="{style.funny}">save</g:Button>
+    <g:Button ui:field="selectButton" styleName="{style.funny}">select</g:Button>
+    <ed:EditPersonViewImpl ui:field="editPerson" />
   </g:HTMLPanel>
 </ui:UiBinder>

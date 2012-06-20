@@ -29,9 +29,15 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   @UiField
   Button savePersonButton;
   @UiField
+  Button selectButton;
+  @UiField
   TextBox nameTextBox;
   @UiField
   TextBox nickTextBox;
+  @UiField
+  EditPersonView editPerson;
+
+
 
   public SimpleViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -58,11 +64,23 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
     Window.alert("Person Saved Successful!");
   }
 
+  @Override
+  public void setPersonForEdit() {
+    editPerson.setPersonForEdit(nameTextBox.getText());
+  }
+
 
   @UiHandler("savePersonButton")
   public void onSaveButtonClicked(ClickEvent event) {
     if (presenter != null) {
       presenter.onSaveButtonClicked();
+    }
+  }
+
+  @UiHandler("selectButton")
+  public void onSelectButtonClicked(ClickEvent event){
+    if(presenter != null) {
+      presenter.onSelectButtonClicked();
     }
   }
 }

@@ -33,8 +33,9 @@ public class SimpleFormPresenter implements Presenter, SimpleView.Presenter {
   }
 
   @Override
-  public void onGetButtonClicked() {
-    //To change body of implemented methods use File | Settings | File Templates.
+  public void onSelectButtonClicked() {
+    simpleView.setPersonForEdit();
+
   }
 
   public void addPerson(){
@@ -48,6 +49,7 @@ public class SimpleFormPresenter implements Presenter, SimpleView.Presenter {
 
     });
   }
+
 
 
 }
