@@ -9,8 +9,14 @@ public interface SimpleView extends IsWidget{
   
   String getNameValue();
   String getNickValue();
+  String getPhoneValue();
+  String getOccupationValue();
+
+  void setNickValue(String nick);
+  void setPhoneValue(String phone);
+  void setOccupationValue(String occupation);
+
   void showSuccessMessage();
-  void setPersonForEdit();
 
   public interface Presenter{
     void onSaveButtonClicked();

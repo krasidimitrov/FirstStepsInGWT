@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:ed='urn:import:com.clouway.sampleRF.client'>
+             >
 
   <ui:style>
     .formStyle {
@@ -25,8 +25,14 @@
     <g:TextBox ui:field="nameTextBox"/>
     <g:Label>Nick:</g:Label>
     <g:TextBox ui:field="nickTextBox">gdasgas</g:TextBox>
+    <g:Label>Phone:</g:Label>
+    <g:TextBox ui:field="phoneTextBox">gdasgas</g:TextBox>
+    <g:Label>Occupation:</g:Label>
+    <g:TextBox ui:field="occupationTextBox">gdasgas</g:TextBox>
+
     <g:Button ui:field="savePersonButton" styleName="{style.funny}">save</g:Button>
     <g:Button ui:field="selectButton" styleName="{style.funny}">select</g:Button>
-    <ed:EditPersonViewImpl ui:field="editPerson" />
+    <g:Button ui:field="switchButton">turn edit ON</g:Button>
+    <g:Button ui:field="editButton" styleName="{style.funny}">save changes</g:Button>
   </g:HTMLPanel>
 </ui:UiBinder>

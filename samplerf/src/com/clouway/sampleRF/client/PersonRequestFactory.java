@@ -16,7 +16,7 @@ public interface PersonRequestFactory extends RequestFactory{
   interface PersonRequest extends RequestContext {
 
 //    Request<Void> save(PersonProxy personProxy);
-    Request<Void> save(String name, String nick);
+    Request<Void> save(PersonProxy personProxy);
   }
 
   PersonRequest personRequest();

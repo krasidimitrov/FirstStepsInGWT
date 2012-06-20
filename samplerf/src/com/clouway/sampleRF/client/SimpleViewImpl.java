@@ -35,12 +35,18 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   @UiField
   TextBox nickTextBox;
   @UiField
-  EditPersonView editPerson;
-
+  TextBox phoneTextBox;
+  @UiField
+  TextBox occupationTextBox;
+  @UiField
+  Button editButton;
+  @UiField
+  Button switchButton;
 
 
   public SimpleViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
+    editButton.setEnabled(false);
 
   }
 
@@ -60,13 +66,33 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   }
 
   @Override
-  public void showSuccessMessage() {
-    Window.alert("Person Saved Successful!");
+  public String getPhoneValue() {
+    return phoneTextBox.getText();
   }
 
   @Override
-  public void setPersonForEdit() {
-    editPerson.setPersonForEdit(nameTextBox.getText());
+  public String getOccupationValue() {
+    return occupationTextBox.getText();
+  }
+
+  @Override
+  public void setNickValue(String nick) {
+    nickTextBox.setText(nick);
+  }
+
+  @Override
+  public void setPhoneValue(String phone) {
+    phoneTextBox.setText(phone);
+  }
+
+  @Override
+  public void setOccupationValue(String occupation) {
+    occupationTextBox.setText(occupation);
+  }
+
+  @Override
+  public void showSuccessMessage() {
+    Window.alert("Person Saved Successful!");
   }
 
 
@@ -78,9 +104,20 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   }
 
   @UiHandler("selectButton")
-  public void onSelectButtonClicked(ClickEvent event){
-    if(presenter != null) {
+  public void onSelectButtonClicked(ClickEvent event) {
+    if (presenter != null) {
       presenter.onSelectButtonClicked();
+    }
+  }
+
+  @UiHandler("switchButton")
+  public void onSwitchButtonClicked(ClickEvent event) {
+    if (editButton.isEnabled()) {
+      editButton.setEnabled(false);
+      switchButton.setText("turn edit ON");
+    } else {
+      editButton.setEnabled(true);
+      switchButton.setText("turn edit OFF");
     }
   }
 }

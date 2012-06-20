@@ -34,7 +34,6 @@ public class SimpleFormPresenter implements Presenter, SimpleView.Presenter {
 
   @Override
   public void onSelectButtonClicked() {
-    simpleView.setPersonForEdit();
 
   }
 
