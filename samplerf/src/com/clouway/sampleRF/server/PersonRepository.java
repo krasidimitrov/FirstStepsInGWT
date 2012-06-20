@@ -1,9 +1,11 @@
 package com.clouway.sampleRF.server;
 
+import com.clouway.sampleRF.client.PersonProxy;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
 public interface PersonRepository {
 
-  void save(String name, String nick);
+  void save(PersonProxy personProxy);
 }

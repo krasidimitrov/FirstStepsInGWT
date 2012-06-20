@@ -1,5 +1,7 @@
 package com.clouway.sampleRF.server;
 
+import com.clouway.sampleRF.client.PersonProxy;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
@@ -16,7 +18,7 @@ public class PersonRepositoryImpl implements PersonRepository{
   }
 
   @Override
-  public void save(String name, String nick) {
-    databaseHelper.executeQuery("INSERT INTO Persons(username, nickname) VALUES (?,?);", name, nick);
+  public void save(PersonProxy personProxy) {
+    databaseHelper.executeQuery("INSERT INTO Persons(username, nickname, phone, occupation) VALUES (?,?);", personProxy.getRealName(), personProxy.getNickName(), personProxy.getPhone(), personProxy.getOccupation());
   }
 }
