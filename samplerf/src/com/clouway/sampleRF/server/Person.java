@@ -13,6 +13,10 @@ public class Person {
   
   @Size(min = 1, max = 30)
   private String nickName;
+  
+  private String phone;
+  
+  private String occupation;
 
 //  @Id
 //  @Column(name="id")
@@ -43,8 +47,24 @@ public class Person {
     this.nickName = nickName;
   }
 
+  public String getPhone() {
+    return phone;
+  }
 
-//  public void save(PersonProxy personProxy){
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public String getOccupation() {
+    return occupation;
+  }
+
+  public void setOccupation(String occupation) {
+    this.occupation = occupation;
+  }
+
+
+  //  public void save(PersonProxy personProxy){
 //    DatabaseHelper databaseHelper = new DatabaseHelper();
 //    databaseHelper.executeQuery("INSERT INTO Persons(username, nickname) VALUES (?,?);", personProxy.getRealName(), personProxy.getNickName());
 //  }

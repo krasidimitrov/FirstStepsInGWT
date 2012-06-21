@@ -8,12 +8,6 @@ import com.google.web.bindery.requestfactory.shared.Locator;
 public class PersonLocator extends Locator<Person, Long>{
 
 
-  private final PersonRepository personRepository;
-
-  public PersonLocator(PersonRepository personRepository){
-    this.personRepository = personRepository;
-  }
-
   @Override
   public Person create(Class<? extends Person> clazz) {
     try {
@@ -52,9 +46,5 @@ public class PersonLocator extends Locator<Person, Long>{
   public Object getVersion(Person domainObject) {
     return domainObject.getVersion();
   }
-  
-  //===========================================
-  
 
-  
 }

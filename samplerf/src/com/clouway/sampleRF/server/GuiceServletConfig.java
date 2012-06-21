@@ -1,11 +1,18 @@
 package com.clouway.sampleRF.server;
 
 
+import com.clouway.sampleRF.server.injecting.MyConstraintValidatorFactory;
+import com.clouway.sampleRF.server.injecting.MyRequestFactoryServlet;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import com.google.inject.servlet.GuiceServletContextListener;
 import com.google.inject.servlet.ServletModule;
 
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.sql.Connection;
 
 /**
@@ -24,21 +31,24 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 //        serve("/MySampleApplication/OnlineBankService").with(BankServiceImpl.class);
 
 //        filter("/*").through(DatabaseConnectionFilter.class);
+        serve("/gwtRequest").with(MyRequestFactoryServlet.class);
 
         bind(Connection.class).toProvider(ConnectionProvider.class);
         bind(DatabaseHelper.class).asEagerSingleton();
+        bind(PersonRepository.class).to(PersonRepositoryImpl.class);
 //        bind(new TypeLiteral<Provider<Connection>>(){}).to(ConnectionProvider.class).in(Singleton.class);
       }
 
-//      @Provides
-//      @Singleton Providerdsa<Connection> provideConnection() {
-//        return connectionProvider;
-//      }
+      @Provides
+      @Singleton
+      ValidatorFactory getValidatorFactory(Injector injector) {
+        return Validation.byDefaultProvider().configure().constraintValidatorFactory(new MyConstraintValidatorFactory(injector)).buildValidatorFactory();
+      }
 
-//      @Provides
-//      DatabaseHelper provideDatabaseHelper(){
-//        return new DatabaseHelper(new ConnectionProvider());
-//      }
+      @Provides @Singleton
+      Validator getValidator(ValidatorFactory validatorFactory) {
+        return validatorFactory.getValidator();
+      }
     });
   }
 }

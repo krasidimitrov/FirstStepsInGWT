@@ -2,6 +2,7 @@ package com.clouway.sampleRF.server;
 
 import com.google.inject.Provider;
 
+import javax.inject.Inject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,12 +20,12 @@ import java.sql.SQLException;
 public class DatabaseHelper {
 
 
-//  @Inject
+  @Inject
   Provider<Connection> connectionProvider;
 
-  public DatabaseHelper(){
-   connectionProvider= new ConnectionProvider();
-  }
+//  public DatabaseHelper(){
+//   connectionProvider= new ConnectionProvider();
+//  }
 
   /**
    * Execute a query with 0 to n parameters
@@ -109,27 +110,27 @@ public class DatabaseHelper {
 
     return generatedKey;
   }
-//
-//  public <T> T executeQueryThatReturnSpecificObject(String query, RowMapper<T> rowMapper, Object... params) {
-//
-//    T objectReturned = null;
-//
-//    Connection connection;
-//    try {
-//      connection = connectionProvider.get();
-//      PreparedStatement preparedStatement = connection.prepareStatement(query);
-//
-//      fillParams(preparedStatement, params);
-//
-//      ResultSet resultSet = preparedStatement.executeQuery();
-//
-//
-//      if (resultSet.next()) {
-//        objectReturned = rowMapper.map(resultSet);
-//      }
-//    } catch (SQLException e) {
-//      e.printStackTrace();
-//    }
-//    return objectReturned;
-//  }
+
+  public <T> T executeQueryThatReturnSpecificObject(String query, RowMapper<T> rowMapper, Object... params) {
+
+    T objectReturned = null;
+
+    Connection connection;
+    try {
+      connection = connectionProvider.get();
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+      fillParams(preparedStatement, params);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+
+      if (resultSet.next()) {
+        objectReturned = rowMapper.map(resultSet);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return objectReturned;
+  }
 }

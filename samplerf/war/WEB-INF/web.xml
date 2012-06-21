@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-           version="2.5">
+         version="2.5">
 
-<!--<servlet><servlet-name>SampleRF SampleRFService</servlet-name><servlet-class>com.clouway.sampleRF.server.SampleRFServiceImpl</servlet-class></servlet><servlet-mapping><servlet-name>SampleRF SampleRFService</servlet-name><url-pattern>/SampleRF/SampleRFService</url-pattern></servlet-mapping> -->
+  <!--<servlet>-->
+    <!--<servlet-name>SampleRF SampleRFService</servlet-name>-->
+    <!--<servlet-class>com.clouway.sampleRF.server.SampleRFServiceImpl</servlet-class>-->
+  <!--</servlet>-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>SampleRF SampleRFService</servlet-name>-->
+    <!--<url-pattern>/SampleRF/SampleRFService</url-pattern>-->
+  <!--</servlet-mapping>-->
 
   <filter>
     <filter-name>guiceFilter</filter-name>
@@ -21,5 +28,16 @@
   <listener>
     <listener-class>com.clouway.sampleRF.server.GuiceServletConfig</listener-class>
   </listener>
+
+
+  <!--<servlet>-->
+    <!--<servlet-name>requestFactoryServlet</servlet-name>-->
+    <!--<servlet-class>com.google.web.bindery.requestfactory.server.RequestFactoryServlet</servlet-class>-->
+  <!--</servlet>-->
+
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>requestFactoryServlet</servlet-name>-->
+    <!--<url-pattern>/gwtRequest</url-pattern>-->
+  <!--</servlet-mapping>-->
 
 </web-app>
