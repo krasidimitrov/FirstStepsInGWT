@@ -1,11 +1,9 @@
 package com.clouway.sampleRF.client;
 
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;
 import org.jmock.lib.legacy.ClassImposteriser;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -26,6 +24,7 @@ public class SimpleFormPresenterTest {
   private SimpleFormPresenter simpleFormPresenter = new SimpleFormPresenter(requestFactory, simpleView);
   private InstanceMatcher<Receiver<Void>> instanceMatcher = new InstanceMatcher<Receiver<Void>>();
   private Receiver<Void> receiver = context.mock(Receiver.class);
+  private SampleClass sampleClass = new SampleClass();
 
 
   public class FakeReceiver extends Receiver<Void>{
@@ -36,38 +35,38 @@ public class SimpleFormPresenterTest {
     }
   }
 
-  @Test
-  public void addPersonSendRequest(){
-    final FakeReceiver fakeReceiver = new FakeReceiver();
-    
-    context.checking(new Expectations(){{
-      oneOf(simpleView).getNameValue();
-      will(returnValue(name));
-      oneOf(simpleView).getNickValue();
-      will(returnValue(nick));
-      oneOf(requestFactory).personRequest().save(name,nick).fire(fakeReceiver);
-    }});
-
-
-    simpleFormPresenter.addPerson();
-  }
-
-  @Test
-  public void addPersonOnSuccess(){
-    final FakeReceiver fakeReceiver = new FakeReceiver();
-    context.checking(new Expectations(){{
-      oneOf(simpleView).getNameValue();
-      will(returnValue(name));
-      oneOf(simpleView).getNickValue();
-      will(returnValue(nick));
-      oneOf(requestFactory).personRequest().save(name,nick).fire(receiver);
-//      oneOf(simpleView).showSuccessMessage();
-    }});
-
-
-    simpleFormPresenter.addPerson();
-    receiver.onSuccess(null);
-
-
-  }
+//  @Test
+//  public void addPersonSendRequest(){
+//    final FakeReceiver fakeReceiver = new FakeReceiver();
+//
+//    context.checking(new Expectations(){{
+//      oneOf(simpleView).getNameValue();
+//      will(returnValue(name));
+//      oneOf(simpleView).getNickValue();
+//      will(returnValue(nick));
+//      oneOf(requestFactory).personRequest().save(name,nick).fire(fakeReceiver);
+//    }});
+//
+//
+//    simpleFormPresenter.addPerson();
+//  }
+//
+//  @Test
+//  public void addPersonOnSuccess(){
+//    final FakeReceiver fakeReceiver = new FakeReceiver();
+//    context.checking(new Expectations(){{
+//      oneOf(simpleView).getNameValue();
+//      will(returnValue(name));
+//      oneOf(simpleView).getNickValue();
+//      will(returnValue(nick));
+//      oneOf(requestFactory).personRequest().save(name,nick).fire(sampleClass);
+////      oneOf(simpleView).showSuccessMessage();
+//    }});
+//
+//
+//    simpleFormPresenter.addPerson();
+//    sampleClass.onSuccess(null);
+//
+//
+//  }
 }

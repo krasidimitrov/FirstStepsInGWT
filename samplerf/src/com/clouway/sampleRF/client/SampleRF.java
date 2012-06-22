@@ -20,6 +20,8 @@ public class SampleRF implements EntryPoint {
     PersonRequestFactory requestFactory = GWT.create(PersonRequestFactory.class);
     requestFactory.initialize(eventBus);
     AppController appController = new AppController(requestFactory, eventBus);
+//    MyGinInjector myGinInjector = GWT.create(GinConfigModule.class);
+//    AppController appController = new AppController();
     appController.go(RootPanel.get());
 
 

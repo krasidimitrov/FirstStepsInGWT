@@ -11,13 +11,19 @@ import com.google.gwt.user.client.ui.HasWidgets;
  */
 public class AppController implements Presenter, ValueChangeHandler<String>{
   private HasWidgets container;
+//  @Inject
   private PersonRequestFactory requestFactory;
-  private final EventBus eventBus;
+//  @Inject
+  private EventBus eventBus;
   private SimpleViewImpl simpleView = null;
 
   public AppController(PersonRequestFactory requestFactory, EventBus eventBus){
     this.requestFactory = requestFactory;
     this.eventBus = eventBus;
+    bind();
+  }
+
+  public AppController(){
     bind();
   }
 

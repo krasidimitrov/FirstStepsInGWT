@@ -76,6 +76,11 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   }
 
   @Override
+  public void setNameValue(String name) {
+    nameTextBox.setText(name);
+  }
+
+  @Override
   public void setNickValue(String nick) {
     nickTextBox.setText(nick);
   }
@@ -114,10 +119,21 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   public void onSwitchButtonClicked(ClickEvent event) {
     if (editButton.isEnabled()) {
       editButton.setEnabled(false);
+      nickTextBox.setEnabled(true);
+
       switchButton.setText("turn edit ON");
     } else {
       editButton.setEnabled(true);
+      nickTextBox.setEnabled(false);
       switchButton.setText("turn edit OFF");
     }
   }
+
+  @UiHandler("editButton")
+  public void onEditButtonClicked(ClickEvent event) {
+    if(presenter != null){
+      presenter.onEditButtonClicked();
+    }
+  }
+
 }

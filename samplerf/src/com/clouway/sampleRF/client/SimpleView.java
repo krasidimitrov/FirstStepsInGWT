@@ -12,6 +12,7 @@ public interface SimpleView extends IsWidget{
   String getPhoneValue();
   String getOccupationValue();
 
+  void setNameValue(String name);
   void setNickValue(String nick);
   void setPhoneValue(String phone);
   void setOccupationValue(String occupation);
@@ -21,6 +22,7 @@ public interface SimpleView extends IsWidget{
   public interface Presenter{
     void onSaveButtonClicked();
     void onSelectButtonClicked();
+    void onEditButtonClicked();
   }
 
   void setPresenter(Presenter presenter);
