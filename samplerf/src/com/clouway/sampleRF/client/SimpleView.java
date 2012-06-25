@@ -17,6 +17,10 @@ public interface SimpleView extends IsWidget{
   void setPhoneValue(String phone);
   void setOccupationValue(String occupation);
 
+
+  SimpleViewImpl.Driver getDriver();
+
+
   void showSuccessMessage();
 
   public interface Presenter{

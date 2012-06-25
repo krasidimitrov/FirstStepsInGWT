@@ -22,13 +22,13 @@
 
   <g:HTMLPanel styleName="{style.formStyle}">
     <g:Label>Name:</g:Label>
-    <g:TextBox ui:field="nameTextBox"/>
+    <g:TextBox ui:field="name"/>
     <g:Label>Nick:</g:Label>
-    <g:TextBox ui:field="nickTextBox">gdasgas</g:TextBox>
+    <g:TextBox ui:field="nick">gdasgas</g:TextBox>
     <g:Label>Phone:</g:Label>
-    <g:TextBox ui:field="phoneTextBox">gdasgas</g:TextBox>
+    <g:TextBox ui:field="phone">gdasgas</g:TextBox>
     <g:Label>Occupation:</g:Label>
-    <g:TextBox ui:field="occupationTextBox">gdasgas</g:TextBox>
+    <g:TextBox ui:field="occupation">gdasgas</g:TextBox>
 
     <g:Button ui:field="savePersonButton" >save</g:Button>
     <g:Button ui:field="selectButton" >select</g:Button>

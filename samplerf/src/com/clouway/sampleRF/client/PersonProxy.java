@@ -11,17 +11,17 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 @ProxyFor(value = Person.class, locator = PersonLocator.class)
 public interface PersonProxy extends EntityProxy {
 
-  public String getRealName();
+  public String getName();
 
-  public String getNickName();
+  public String getNick();
 
   public String getPhone();
 
   public String getOccupation();
 
-  public void setRealName(String realName);
+  public void setName(String realName);
 
-  public void setNickName(String nickName);
+  public void setNick(String nickName);
 
   public void setPhone(String phone);
 

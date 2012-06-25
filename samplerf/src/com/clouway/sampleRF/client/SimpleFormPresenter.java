@@ -14,10 +14,24 @@ public class SimpleFormPresenter implements Presenter, SimpleView.Presenter {
   private final PersonRequestFactory requestFactory;
   private final SimpleView simpleView;
   private PersonProxy personProxyForEdit;
+  private PersonProxy personProxyForAdd;
+  private SimpleViewImpl.Driver editorDriver;
+
+
 
   public SimpleFormPresenter(PersonRequestFactory requestFactory, SimpleView simpleView) {
     this.requestFactory = requestFactory;
     this.simpleView = simpleView;
+    editorDriver = simpleView.getDriver();
+    editorDriver.initialize(this.requestFactory,(SimpleViewImpl) this.simpleView);
+    setUpToAddNewPerson();
+  }
+
+  private void setUpToAddNewPerson(){
+    PersonRequest request = requestFactory.personRequest();
+    personProxyForAdd = request.create(PersonProxy.class);
+    editorDriver.edit(personProxyForAdd, request);
+    
   }
 
   @Override
@@ -44,53 +58,40 @@ public class SimpleFormPresenter implements Presenter, SimpleView.Presenter {
   }
 
   public void addPerson(){
-    PersonRequestFactory.PersonRequest personRequest = requestFactory.personRequest();
-    PersonProxy personProxy = personRequest.create(PersonProxy.class);
-    personProxy.setRealName(simpleView.getNameValue());
-    personProxy.setNickName(simpleView.getNickValue());
-    personProxy.setPhone(simpleView.getPhoneValue());
-    personProxy.setOccupation(simpleView.getOccupationValue());
-    personRequest.save(personProxy).fire(new Receiver<Void>() {
+    PersonRequest personRequest = (PersonRequest) editorDriver.flush();
+    personRequest.save(personProxyForAdd).to(new Receiver<Void>() {
+      @Override
+      public void onSuccess(Void response) {
+        simpleView.showSuccessMessage();
+      }
+    }).fire();
+    
+  }
+
+  public void selectPerson(){
+    PersonRequest personRequest = requestFactory.personRequest();
+    personRequest.getPersonFromNick(simpleView.getNickValue()).fire(new Receiver<PersonProxy>() {
+      @Override
+      public void onSuccess(PersonProxy response) {
+        personProxyForEdit = response;
+
+        editorDriver.edit(personProxyForEdit, requestFactory.personRequest());
+
+      }
+    });
+  }
+
+
+
+  public void editPerson(){
+
+    PersonRequest request = (PersonRequest) editorDriver.flush();
+    request.update(personProxyForEdit).to(new Receiver<Void>() {
       @Override
       public void onSuccess(Void response) {
         simpleView.showSuccessMessage();
       }
 
-    });
-  }
-
-  public void selectPerson(){
-    PersonRequestFactory.PersonRequest personRequest = requestFactory.personRequest();
-    personRequest.getPersonFromNick(simpleView.getNickValue()).fire(new Receiver<PersonProxy>() {
-      @Override
-      public void onSuccess(PersonProxy response) {
-        personProxyForEdit = response;
-        simpleView.setNameValue(response.getRealName());
-        simpleView.setNickValue(response.getNickName());
-        simpleView.setPhoneValue(response.getPhone());
-        simpleView.setOccupationValue(response.getOccupation());
-      }
-    });
-  }
-
-  public void editPerson(){
-    PersonRequestFactory.PersonRequest personRequest = requestFactory.personRequest();
-    personRequest.getPersonFromNick(simpleView.getNickValue()).to(new Receiver<PersonProxy>() {
-      @Override
-      public void onSuccess(PersonProxy person) {
-        PersonRequestFactory.PersonRequest updateRequest = requestFactory.personRequest();
-        person = updateRequest.edit(person);
-        person.setRealName(simpleView.getNameValue());
-        person.setPhone(simpleView.getPhoneValue());
-        person.setOccupation(simpleView.getOccupationValue());
-
-        updateRequest.update(person).to(new Receiver<Void>() {
-          @Override
-          public void onSuccess(Void response) {
-            simpleView.showSuccessMessage();
-          }
-        }).fire();
-      }
     }).fire();
 
   }

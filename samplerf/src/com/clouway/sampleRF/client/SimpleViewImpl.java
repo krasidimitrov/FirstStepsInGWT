@@ -11,11 +11,18 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
 public class SimpleViewImpl extends Composite implements SimpleView, Editor<PersonProxy> {
+
+  interface Driver extends
+          RequestFactoryEditorDriver<PersonProxy, SimpleViewImpl> {
+  }
+  
+  private Driver editorDriver;
 
 
   private Presenter presenter;
@@ -31,13 +38,13 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   @UiField
   Button selectButton;
   @UiField
-  TextBox nameTextBox;
+  TextBox name;
   @UiField
-  TextBox nickTextBox;
+  TextBox nick;
   @UiField
-  TextBox phoneTextBox;
+  TextBox phone;
   @UiField
-  TextBox occupationTextBox;
+  TextBox occupation;
   @UiField
   Button editButton;
   @UiField
@@ -57,42 +64,42 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
 
   @Override
   public String getNameValue() {
-    return nameTextBox.getText();
+    return name.getText();
   }
 
   @Override
   public String getNickValue() {
-    return nickTextBox.getText();
+    return nick.getText();
   }
 
   @Override
   public String getPhoneValue() {
-    return phoneTextBox.getText();
+    return phone.getText();
   }
 
   @Override
   public String getOccupationValue() {
-    return occupationTextBox.getText();
+    return occupation.getText();
   }
 
   @Override
   public void setNameValue(String name) {
-    nameTextBox.setText(name);
+    this.name.setText(name);
   }
 
   @Override
   public void setNickValue(String nick) {
-    nickTextBox.setText(nick);
+    this.nick.setText(nick);
   }
 
   @Override
   public void setPhoneValue(String phone) {
-    phoneTextBox.setText(phone);
+    this.phone.setText(phone);
   }
 
   @Override
   public void setOccupationValue(String occupation) {
-    occupationTextBox.setText(occupation);
+    this.occupation.setText(occupation);
   }
 
   @Override
@@ -111,6 +118,7 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   @UiHandler("selectButton")
   public void onSelectButtonClicked(ClickEvent event) {
     if (presenter != null) {
+
       presenter.onSelectButtonClicked();
     }
   }
@@ -119,12 +127,12 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
   public void onSwitchButtonClicked(ClickEvent event) {
     if (editButton.isEnabled()) {
       editButton.setEnabled(false);
-      nickTextBox.setEnabled(true);
+      nick.setEnabled(true);
 
       switchButton.setText("turn edit ON");
     } else {
       editButton.setEnabled(true);
-      nickTextBox.setEnabled(false);
+      nick.setEnabled(false);
       switchButton.setText("turn edit OFF");
     }
   }
@@ -136,4 +144,9 @@ public class SimpleViewImpl extends Composite implements SimpleView, Editor<Pers
     }
   }
 
+  @Override
+  public Driver getDriver() {
+    editorDriver = GWT.create(Driver.class);
+    return editorDriver;  //To change body of implemented methods use File | Settings | File Templates.
+  }
 }
