@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
@@ -23,39 +24,50 @@ public class MainViewImpl extends Composite {
   @UiField
   Button sellButton;
   @UiField
+  Button editButton;
+  @UiField
   HTMLPanel mainPanel;
 
-  AddProductEditorImpl addProductEditor = null;
-  SellProductEditorImpl sellProductEditor = null;
+  private Widget activeEditor;
+
+  private AddProductEditorImpl addProductEditor;
+  private SellProductEditorImpl sellProductEditor;
+  private ProductEditorImpl productEditor;
 
 
   public MainViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
+    addProductEditor = new AddProductEditorImpl();
+    sellProductEditor = new SellProductEditorImpl();
+    productEditor = new ProductEditorImpl();
+    activeEditor = addProductEditor;
+    mainPanel.add(activeEditor);
+
 
   }
 
 
   @UiHandler("addButton")
   public void onAddButtonClicked(ClickEvent event) {
-    if(sellProductEditor != null){
-      mainPanel.remove(sellProductEditor);
-    }
-    if (addProductEditor == null) {
-      addProductEditor = new AddProductEditorImpl();
-    }
-    mainPanel.add(addProductEditor);
+    changeEditor(addProductEditor);
   }
 
   @UiHandler("sellButton")
-  public void onSellByttonClicked(ClickEvent event){
-    if(addProductEditor != null){
-      mainPanel.remove(addProductEditor);
-    }
-    if(sellProductEditor == null){
-      sellProductEditor = new SellProductEditorImpl();
-    }
-      mainPanel.add(sellProductEditor);
+  public void onSellByttonClicked(ClickEvent event) {
+    changeEditor(sellProductEditor);
 
+  }
+
+  @UiHandler("editButton")
+  public void onEditButtonClicked(ClickEvent event){
+    changeEditor(productEditor);
+  }
+
+
+  private void changeEditor(Widget newActiveEditor) {
+    mainPanel.remove(activeEditor);
+    activeEditor = newActiveEditor;
+    mainPanel.add(activeEditor);
   }
 
 }

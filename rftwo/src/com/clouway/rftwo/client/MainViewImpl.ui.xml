@@ -25,7 +25,7 @@
     <g:VerticalPanel>
       <g:Button ui:field="addButton">Add product</g:Button>
       <g:Button ui:field="sellButton">Sell product</g:Button>
-      <g:Button ui:field="ediButton">Edit product</g:Button>
+      <g:Button ui:field="editButton">Edit product</g:Button>
       <g:Button ui:field="extraButton">Not working</g:Button>
     </g:VerticalPanel>
 
