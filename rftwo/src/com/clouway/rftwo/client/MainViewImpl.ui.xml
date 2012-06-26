@@ -1,0 +1,33 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+  <ui:style>
+    .mainPanelStyle {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 200px;
+
+      width: 700px;
+      height: 300px;
+      background-color: rgba(102, 102, 107, 0.23);
+    }
+    @external .gwt-Button;
+   .gwt-Button{
+        margin-bottom: 30px;
+    }
+  </ui:style>
+
+
+
+
+  <g:HTMLPanel ui:field="mainPanel" styleName="{style.mainPanelStyle}">
+    <h3 style="margin-left: 20px;">Menu</h3>
+    <g:VerticalPanel>
+      <g:Button ui:field="addButton">Add product</g:Button>
+      <g:Button ui:field="sellButton">Sell product</g:Button>
+      <g:Button ui:field="ediButton">Edit product</g:Button>
+      <g:Button ui:field="extraButton">Not working</g:Button>
+    </g:VerticalPanel>
+
+  </g:HTMLPanel>
+</ui:UiBinder>
