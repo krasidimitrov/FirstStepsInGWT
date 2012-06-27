@@ -30,17 +30,20 @@ public class MainViewImpl extends Composite {
 
   private Widget activeEditor;
 
-  private AddProductEditorImpl addProductEditor;
+  private AddProductEditor addProductEditor;
   private SellProductEditorImpl sellProductEditor;
   private ProductEditorImpl productEditor;
 
 
-  public MainViewImpl() {
+  public MainViewImpl(AddProductEditor addProductEditor, SellProductEditorImpl sellProductEditor, ProductEditorImpl productEditor) {
     initWidget(ourUiBinder.createAndBindUi(this));
-    addProductEditor = new AddProductEditorImpl();
-    sellProductEditor = new SellProductEditorImpl();
-    productEditor = new ProductEditorImpl();
-    activeEditor = addProductEditor;
+      this.addProductEditor = addProductEditor;
+      this.sellProductEditor = sellProductEditor;
+      this.productEditor = productEditor;
+//    addProductEditor = new AddProductEditorImpl();
+//    sellProductEditor = new SellProductEditorImpl();
+//    productEditor = new ProductEditorImpl();
+    activeEditor = (Widget) addProductEditor;
     mainPanel.add(activeEditor);
 
 
@@ -49,7 +52,7 @@ public class MainViewImpl extends Composite {
 
   @UiHandler("addButton")
   public void onAddButtonClicked(ClickEvent event) {
-    changeEditor(addProductEditor);
+    changeEditor((Widget)addProductEditor);
   }
 
   @UiHandler("sellButton")
