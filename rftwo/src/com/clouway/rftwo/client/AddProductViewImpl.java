@@ -10,12 +10,12 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
-import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.Receiver;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class AddProductEditorImpl extends Composite implements AddProductEditor{
+public class AddProductViewImpl extends Composite implements AddProductView {
 
 
   interface Driver extends
@@ -34,29 +34,43 @@ public class AddProductEditorImpl extends Composite implements AddProductEditor{
     this.presenter = presenter;
   }
 
-  interface AddProductEditorImplUiBinder extends UiBinder<HTMLPanel, AddProductEditorImpl> {
+  interface AddProductViewImplUiBinder extends UiBinder<HTMLPanel, AddProductViewImpl> {
   }
 
 
-  private static AddProductEditorImplUiBinder ourUiBinder = GWT.create(AddProductEditorImplUiBinder.class);
+  private static AddProductViewImplUiBinder ourUiBinder = GWT.create(AddProductViewImplUiBinder.class);
 
   @UiField
   Button addProductButton;
+  @UiField
+  AddProductEditor editor;
 
-
-  public AddProductEditorImpl() {
+  public AddProductViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
     editorDriver = GWT.create(Driver.class);
   }
 
   @Override
-  public void setUpDriver(ProductRequestFactory productRequestFactory, AddProductEditor editor) {
+  public void setUpDriver(ProductRequestFactory productRequestFactory) {
     editorDriver.initialize(productRequestFactory, editor);
   }
 
   @Override
-  public RequestContext fillProductProperties(ProductProxy product) {
-    return editorDriver.flush();
+  public void fillForm(ProductRequest productRequest, ProductProxy product) {
+    productRequest.save(product).to(new Receiver<Void>() {
+      @Override
+      public void onSuccess(Void response) {
+        showSuccessMessage();
+      }
+    });
+    editorDriver.edit(product, productRequest);
+  }
+
+
+  @Override
+  public void fillProductProperties() {
+
+    editorDriver.flush().fire();
   }
 
   @Override

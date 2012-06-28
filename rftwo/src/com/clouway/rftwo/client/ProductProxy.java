@@ -13,6 +13,9 @@ import java.math.BigDecimal;
 @ProxyFor(value = Product.class, locator = ProductLocator.class)
 public interface ProductProxy extends EntityProxy{
 
+
+
+  
   void setName(String name);
   
   void setPrice(BigDecimal price);
@@ -21,7 +24,7 @@ public interface ProductProxy extends EntityProxy{
   
   
   String getName();
-  
+
   BigDecimal getPrice();
   
   int getQuantity();

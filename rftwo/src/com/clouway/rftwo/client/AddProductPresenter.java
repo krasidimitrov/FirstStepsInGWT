@@ -1,24 +1,30 @@
 package com.clouway.rftwo.client;
 
-import com.google.web.bindery.requestfactory.shared.Receiver;
+import java.math.BigDecimal;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class AddProductPresenter implements AddProductEditor.Presenter {
+public class AddProductPresenter implements AddProductView.Presenter, Presenter {
 
 
-  private final AddProductEditor addProductEditor;
+  private AddProductView addProductView;
   private ProductRequestFactory requestFactory;
   private ProductProxy productForAdd;
   private ProductRequest productRequest;
 
-  public AddProductPresenter(ProductRequestFactory requestFactory, AddProductEditor addProductEditor) {
+  public AddProductPresenter(ProductRequestFactory requestFactory, AddProductView addProductView) {
     this.requestFactory = requestFactory;
-    this.addProductEditor = addProductEditor;
-    addProductEditor.setPresenter(this);
+
+    this.addProductView = addProductView;
+    this.addProductView.setUpDriver(this.requestFactory);
+    this.addProductView.setPresenter(this);
     productRequest = requestFactory.productRequest();
     productForAdd = productRequest.create(ProductProxy.class);
+    productForAdd.setName("");
+    productForAdd.setQuantity(0);
+    productForAdd.setPrice(new BigDecimal(0));
+    this.addProductView.fillForm(productRequest, productForAdd);
   }
 
 
@@ -28,14 +34,15 @@ public class AddProductPresenter implements AddProductEditor.Presenter {
   }
 
   public void addProduct(){
-    productForAdd = productRequest.edit(productForAdd);
-    ProductRequest request = (ProductRequest) addProductEditor.fillProductProperties(productForAdd);
-    request.save(productForAdd).to(new Receiver<Void>() {
-      @Override
-      public void onSuccess(Void response) {
-        addProductEditor.showSuccessMessage();
-      }
-    }).fire();
+//    productForAdd = productRequest.edit(productForAdd);
+    addProductView.fillProductProperties();
+//    productRequest.save(productForAdd).to(new Receiver<Void>() {
+//      @Override
+//      public void onSuccess(Void response) {
+//        addProductView.showSuccessMessage();
+//        Window.alert(productForAdd.getName());
+//      }
+//    }).fire();
   }
   
 }

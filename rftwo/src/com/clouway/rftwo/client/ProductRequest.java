@@ -10,8 +10,12 @@ import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.Service;
 
+import java.util.List;
+
 @Service(value = ProductService.class, locator = MyServiceLocator.class)
 public interface ProductRequest extends RequestContext{
 
   Request<Void> save(ProductProxy productProxy);
+
+  Request<List<ProductProxy>> getAllProducts();
 }

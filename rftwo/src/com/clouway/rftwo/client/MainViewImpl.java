@@ -2,6 +2,8 @@ package com.clouway.rftwo.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -30,21 +32,25 @@ public class MainViewImpl extends Composite {
 
   private Widget activeEditor;
 
-  private AddProductEditor addProductEditor;
-  private SellProductEditorImpl sellProductEditor;
+  private AddProductView addProductView;
+  private SellProductView sellProductView;
   private ProductEditorImpl productEditor;
+  private EventBus eventBus;
+  private ProductRequestFactory requestFactory;
 
-
-  public MainViewImpl(AddProductEditor addProductEditor, SellProductEditorImpl sellProductEditor, ProductEditorImpl productEditor) {
+  public MainViewImpl(AddProductView addProductView, SellProductView sellProductView, ProductEditorImpl productEditor) {
     initWidget(ourUiBinder.createAndBindUi(this));
-      this.addProductEditor = addProductEditor;
-      this.sellProductEditor = sellProductEditor;
+      this.addProductView = addProductView;
+      this.sellProductView = sellProductView;
       this.productEditor = productEditor;
-//    addProductEditor = new AddProductEditorImpl();
-//    sellProductEditor = new SellProductEditorImpl();
-//    productEditor = new ProductEditorImpl();
-    activeEditor = (Widget) addProductEditor;
+    eventBus = new SimpleEventBus();
+    requestFactory = GWT.create(ProductRequestFactory.class);
+    requestFactory.initialize(eventBus);
+
+    new AddProductPresenter(requestFactory , addProductView);
+    activeEditor = (Widget) addProductView;
     mainPanel.add(activeEditor);
+
 
 
   }
@@ -52,22 +58,22 @@ public class MainViewImpl extends Composite {
 
   @UiHandler("addButton")
   public void onAddButtonClicked(ClickEvent event) {
-    changeEditor((Widget)addProductEditor);
+    changeEditor((Widget) addProductView,new AddProductPresenter(requestFactory, addProductView));
   }
 
   @UiHandler("sellButton")
   public void onSellByttonClicked(ClickEvent event) {
-    changeEditor(sellProductEditor);
+    changeEditor((Widget) sellProductView, new SellProductPresenter(requestFactory, sellProductView));
 
   }
 
-  @UiHandler("editButton")
-  public void onEditButtonClicked(ClickEvent event){
-    changeEditor(productEditor);
-  }
+//  @UiHandler("editButton")
+//  public void onEditButtonClicked(ClickEvent event){
+//    changeEditor(productEditor);
+//  }
 
 
-  private void changeEditor(Widget newActiveEditor) {
+  private void changeEditor(Widget newActiveEditor, Presenter presenter) {
     mainPanel.remove(activeEditor);
     activeEditor = newActiveEditor;
     mainPanel.add(activeEditor);

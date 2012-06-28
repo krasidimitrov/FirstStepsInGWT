@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        >
 
 
   <ui:style>
@@ -39,7 +40,7 @@
     <p>
       Sell<g:TextBox ui:field="quantity" styleName="{style.quantityBoxStyle}"/>(quantity)
       <g:ListBox ui:field="productList"/>
-      <g:Label styleName="{style.labelStyle}">for 13 $ a piece</g:Label>
+      <g:Label styleName="{style.labelStyle}" ui:field="priceLabel">for 13 $ a piece</g:Label>
     </p>
     <g:Button ui:field="sell" styleName="{style.sellButtonStyle}">SELL</g:Button>
   </g:HTMLPanel>

@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:ed='urn:import:com.clouway.rftwo.client'>
 
   <ui:style>
     .addPanelStyle {
@@ -18,12 +19,7 @@
 
 
   <g:HTMLPanel styleName="{style.addPanelStyle}">
-    <g:Label>name:</g:Label>
-    <g:TextBox ui:field="name" />
-    <g:Label>price:</g:Label>
-    <g:TextBox ui:field="price" />
-    <g:Label>quantity:</g:Label>
-    <g:TextBox ui:field="quantity" />
+    <ed:AddProductEditor ui:field="editor"/>
     <g:Button ui:field="addProductButton" styleName="{style.leftStyle}">add</g:Button>
   </g:HTMLPanel>
 </ui:UiBinder>
