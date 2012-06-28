@@ -29,6 +29,7 @@ public class ProductRepositoryImpl implements ProductRepository{
 
   @Override
   public List<Product> getAllProducts() {
-    return null;  //To change body of implemented methods use File | Settings | File Templates.
+    return  databaseHelper.executeQueryReturnList("SELECT * FROM Products;", new ProductRowMapper());
   }
+
 }

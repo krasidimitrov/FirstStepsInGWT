@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -132,5 +134,29 @@ public class DatabaseHelper {
       e.printStackTrace();
     }
     return objectReturned;
+  }
+
+  public <T> List<T> executeQueryReturnList(String query, RowMapper<T> rowMapper, Object... params) {
+
+    Connection connection;
+    List<T> results = null;
+
+    try {
+      connection = connectionProvider.get();
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+      fillParams(preparedStatement, params);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      results = new ArrayList<T>();
+
+      while (resultSet.next()) {
+        results.add(rowMapper.map(resultSet));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return results;
   }
 }
