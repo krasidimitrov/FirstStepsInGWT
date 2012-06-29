@@ -20,4 +20,8 @@ public class ProductService {
     return productRepository.getAllProducts();
   }
 
+  public void update(Product product){
+    productRepository.update(product);
+  }
+
 }

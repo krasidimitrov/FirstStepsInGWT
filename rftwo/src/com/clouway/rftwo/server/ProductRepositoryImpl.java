@@ -24,7 +24,7 @@ public class ProductRepositoryImpl implements ProductRepository{
 
   @Override
   public void update(Product product) {
-    //To change body of implemented methods use File | Settings | File Templates.
+    databaseHelper.executeQuery("UPDATE Products SET productName = ?, quantity = ?, price = ? WHERE productName = ?;", product.getName(), product.getQuantity(), product.getPrice(), product.getName());
   }
 
   @Override
