@@ -1,6 +1,8 @@
 package com.clouway.rftwo.client;
 
+import com.clouway.rftwo.client.gin.SimpleGinInjector;
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -19,11 +21,13 @@ public class rftwo implements EntryPoint {
 
     AddProductView addProductView = new AddProductViewImpl();
     SellProductView sellProductView = new SellProductViewImpl();
-    ProductEditorImpl productEditor = new ProductEditorImpl();
+    EditProductViewImpl productView = new EditProductViewImpl();
 
 //    AddProductPresenter addProductPresenter = new AddProductPresenter(requestFactory,addProductView);
+    SimpleGinInjector ginInjector = GWT.create(SimpleGinInjector.class);
+    MainViewImpl mainView = ginInjector.getMainViewImpl();
+//    MainViewImpl mainView = new MainViewImpl();//addProductView, sellProductView, productView);
 
-    MainViewImpl mainView = new MainViewImpl(addProductView, sellProductView, productEditor);
     RootPanel.get().add(mainView);
   }
 }

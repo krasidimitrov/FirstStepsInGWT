@@ -10,42 +10,35 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.view.client.ListDataProvider;
-import com.google.web.bindery.event.shared.SimpleEventBus;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class ProductEditorImpl extends Composite{
-  interface ProductEditorImplUiBinder extends UiBinder<HTMLPanel, ProductEditorImpl> {
+public class EditProductViewImpl extends Composite implements EditProductView {
+  private Presenter presenter;
+  private ListDataProvider<ProductProxy> dataProvider;
+
+  interface ProductEditorImplUiBinder extends UiBinder<HTMLPanel, EditProductViewImpl> {
   }
 
   private static ProductEditorImplUiBinder ourUiBinder = GWT.create(ProductEditorImplUiBinder.class);
 
+  @Override
+  public void setPresenter(Presenter presenter) {
+    this.presenter = presenter;
+  }
+
   @UiField
   CellTable<ProductProxy> productCellTable;
 
-  public ProductEditorImpl() {
+  public EditProductViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
 
-    ProductRequestFactory requestFactory = GWT.create(ProductRequestFactory.class);
-    requestFactory.initialize(new SimpleEventBus());
-
-    ProductRequest productRequest = requestFactory.productRequest();
 
 
-    ProductProxy productProxy = productRequest.create(ProductProxy.class);
-    productProxy.setName("DSASD");
-    productProxy.setPrice(new BigDecimal(10));
-    productProxy.setQuantity(10);
-
-    List<ProductProxy> listProducts = new ArrayList<ProductProxy>();
-    listProducts.add(productProxy);
-
-    ListDataProvider<ProductProxy> dataProvider = new ListDataProvider<ProductProxy>();
+    dataProvider = new ListDataProvider<ProductProxy>();
 
     dataProvider.addDataDisplay(productCellTable);
 
@@ -77,10 +70,13 @@ public class ProductEditorImpl extends Composite{
 
     productCellTable.setColumnWidth(name, 200, Style.Unit.PCT);
 
+  }
+
+  @Override
+  public void fillProductTable(List<ProductProxy> listOfProducts) {
     List<ProductProxy> list = dataProvider.getList();
-    for(ProductProxy product: listProducts){
+    for (ProductProxy product : listOfProducts) {
       list.add(product);
     }
-
   }
 }

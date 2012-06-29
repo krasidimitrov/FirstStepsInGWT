@@ -18,4 +18,6 @@ public interface ProductRequest extends RequestContext{
   Request<Void> save(ProductProxy productProxy);
 
   Request<List<ProductProxy>> getAllProducts();
+
+  Request<Void> update(ProductProxy productProxy);
 }

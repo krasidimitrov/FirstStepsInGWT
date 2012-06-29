@@ -8,6 +8,8 @@ import java.util.List;
 public interface SellProductView {
 
   void setProductList(List<ProductProxy> allProductNames);
+  ProductProxy getSelectedProduct();
+  int getQuantityForSell();
 
   public interface Presenter{
     void onSellButtonClicked();

@@ -67,6 +67,16 @@ public class SellProductViewImpl extends Composite implements SellProductView {
     this.presenter = presenter;
   }
 
+  @Override
+  public ProductProxy getSelectedProduct() {
+    return productMap.get(productList.getValue(productList.getSelectedIndex()));
+  }
+
+  @Override
+  public int getQuantityForSell() {
+    return Integer.valueOf(quantity.getText());
+  }
+
   @UiHandler("sell")
   public void onSellButtonClicked(ClickEvent event) {
     if (presenter != null) {
@@ -76,6 +86,6 @@ public class SellProductViewImpl extends Composite implements SellProductView {
 
   @UiHandler("productList")
   public void onProductListSelectedValueChange(ChangeEvent event) {
-   priceLabel.setText("for "+productMap.get(productList.getValue(productList.getSelectedIndex())).getPrice() +" $ a piece");
+   priceLabel.setText("for "+getSelectedProduct().getPrice() +" $ a piece");
   }
 }

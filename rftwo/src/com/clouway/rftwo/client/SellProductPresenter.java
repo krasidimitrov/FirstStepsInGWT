@@ -1,5 +1,6 @@
 package com.clouway.rftwo.client;
 
+import com.google.gwt.user.client.Window;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 import java.util.List;
@@ -18,19 +19,18 @@ public class SellProductPresenter implements SellProductView.Presenter, Presente
     this.requestFactory = requestFactory;
     this.sellProductView = sellProductView;
     this.sellProductView.setPresenter(this);
-    getAllProductNames();
-//    sellProductView.setProductList(listOfProducts);
+    setAllProductNames();
   }
   
   
   
   @Override
   public void onSellButtonClicked() {
-//        sellProductView.setProductList(listOfProducts);
+    decreaseProductQuantity();
   }
   
   
-  private void getAllProductNames(){
+  private void setAllProductNames(){
 
     ProductRequest productRequest = requestFactory.productRequest();
     productRequest.getAllProducts().to(new Receiver<List<ProductProxy>>() {
@@ -40,7 +40,19 @@ public class SellProductPresenter implements SellProductView.Presenter, Presente
         sellProductView.setProductList(response);
       }
     }).fire();
-//    sellProductView.setProductList(listOfProducts);
+  }
+
+  public void decreaseProductQuantity(){
+    ProductRequest productRequest = requestFactory.productRequest();
+    ProductProxy productProxy = sellProductView.getSelectedProduct();
+    productProxy = productRequest.edit(productProxy);
+    productProxy.setQuantity(productProxy.getQuantity()-sellProductView.getQuantityForSell());
+    productRequest.update(productProxy).to(new Receiver<Void>() {
+      @Override
+      public void onSuccess(Void response) {
+        Window.alert("HARDCODED SUCCESS");
+      }
+    }).fire();
   }
 
 }
